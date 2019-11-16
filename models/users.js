@@ -44,11 +44,7 @@ module.exports = function (sequelize, DataTypes) {
         zip: {
             type: DataTypes.INTEGER,
             allowNull: true
-        },
-        phone: {
-            type: DataTypes.INTEGER,
-            allowNull: true
-        },
+        }
     });
     return User;
 };
