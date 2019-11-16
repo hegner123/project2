@@ -2,14 +2,6 @@ var db = require("../models");
 
 module.exports = function(app) {
   // Get all examples
-<<<<<<< HEAD
-=======
-  // app.get("/api/users", function(req, res) {
-  //   db.User.findAll({}).then(function(db) {
-  //     res.json(dbProject2);
-  //   });
-  // });
->>>>>>> 5b178c655668d0d5960633f0c3a2a3d2adec8c51
 
   // Create a new example
   app.post("/api/users", function(req, res) {
