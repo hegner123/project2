@@ -1,16 +1,10 @@
   <!-- Navigation -->
     <ul class="nav nav-tabs justify-content-end">
       <li class="nav-item">
-        <a class="nav-link active" href="#">Login</a>
+        <a class="nav-link active" href="/create-account">Create Account</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Browse Collection</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Book Reviews</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
+        <a class="nav-link" href="/login">Login</a>
       </li>
     </ul>
 
@@ -36,7 +30,7 @@
                     <h4>Create Account:</h4>
                 </div>
             </div>
-            <form>
+            <form id="create-account">
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">First Name</label>
@@ -67,8 +61,58 @@
                 <div class="form-group col-md-4">
                   <label for="inputState">State</label>
                   <select id="inputState" class="form-control">
-                    <option selected>Choose...</option>
-                    <option>...</option>
+                    <option selected>Choose State</option>
+                    <option>AL</option>
+                    <option>AK</option>
+                    <option>AZ</option>
+                    <option>AR</option>
+                    <option>CA</option>
+                    <option>CO</option>
+                    <option>CT</option>
+                    <option>DE</option>
+                    <option>DC</option>
+                    <option>FL</option>
+                    <option>GA</option>
+                    <option>HI</option>
+                    <option>ID</option>
+                    <option>IL</option>
+                    <option>IN</option>
+                    <option>IA</option>
+                    <option>KS</option>
+                    <option>KY</option>
+                    <option>LA</option>
+                    <option>ME</option>
+                    <option>MD</option>
+                    <option>MA</option>
+                    <option>MI</option>
+                    <option>MN</option>
+                    <option>MS</option>
+                    <option>MO</option>
+                    <option>MT</option>
+                    <option>NE</option>
+                    <option>NV</option>
+                    <option>NH</option>
+                    <option>NJ</option>
+                    <option>NM</option>
+                    <option>NY</option>
+                    <option>NC</option>
+                    <option>ND</option>
+                    <option>OH</option>
+                    <option>OK</option>
+                    <option>OR</option>
+                    <option>PA</option>
+                    <option>RI</option>
+                    <option>SC</option>
+                    <option>SD</option>
+                    <option>TN</option>
+                    <option>TX</option>
+                    <option>UT</option>
+                    <option>VT</option>
+                    <option>VA</option>
+                    <option>WA</option>
+                    <option>WV</option>
+                    <option>WI</option>
+                    <option>WY</option>
                   </select>
                 </div>
                 <div class="form-group col-md-2">
@@ -76,17 +120,7 @@
                   <input type="text" class="form-control" id="inputZip">
                 </div>
               </div>
-              <div class="form-group">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="gridCheck">
-                  <label class="form-check-label" for="gridCheck">
-                    Check me out
-                  </label>
-                </div>
-              </div>
               <button type="submit" class="btn btn-primary" id = "signupBtn">Create Account</button>
             </form>
         </div>
     </div>
-
-  <!-- JS,JQuery & Popper -->
