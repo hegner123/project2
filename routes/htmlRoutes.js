@@ -10,9 +10,12 @@ module.exports = function(app) {
     res.render("create_account");
 });
 
+
+
 app.get("/login", function(req, res) {
   res.render("login");
 });
+
 
 
   // Render 404 page for any unmatched routes
