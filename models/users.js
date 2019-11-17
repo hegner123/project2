@@ -5,7 +5,8 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
             validate: {
                 isEmail: true
-            }
+            },
+            primaryKey: true
         },
         userPassword: {
             type: DataTypes.STRING,
