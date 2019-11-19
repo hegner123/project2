@@ -11,10 +11,40 @@ var API = {
       url: "api/users",
       data: JSON.stringify(user)
     });
-  }
+  },
+
+  loginUser: function (user) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/auth",
+      data:JSON.stringify(user)
+    });
+  },
+  getLogin: function() {
+    return $.ajax({
+      url: "api/login",
+      type: "GET"
+    });
+  },
+
 };
 
-
+var refreshLogin = function() {
+  API.getLogin().then(function(data) {
+  //   var userLogin = data.map(function(data) {
+  //     var $li = $("<li>")
+  //     .attr({
+  //       class: "list-group-item",
+  //       "data-id": data.firstname
+  //     })
+  // });
+  console.log(data);
+  
+}
+)};
 
 // Add event listeners to the user signup submit buttons
 
@@ -35,4 +65,21 @@ var handleSignUp = function (event) {
     console.log("it's working");
   });
 };
+
+var handleLogin = function (event) {
+  event.preventDefault();
+  var userLogin = {
+    email: $("#loginEmail").val().trim(),
+    userPassword: $("#loginPassword").val().trim(),
+  };
+
+  API.loginUser(userLogin).then(function() {
+    console.log("it's working");
+    refreshLogin();
+  });
+};
+
+$("#login-btn").on("click", handleLogin);
 $("#signupBtn").on("click", handleSignUp);
+
+
