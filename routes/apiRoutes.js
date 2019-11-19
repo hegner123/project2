@@ -11,15 +11,16 @@ module.exports = function(app) {
 
   // User Login
   app.post('/api/auth', function(req, res, next) {
-    var email = req.body.email;
-    var password = req.body.userPassword;
-    if (email && password) {
-    db.Users.findOne({where : {email: email, userPassword: password}}).then(function(res, error) {
-        if (error) {
+    var loginEmail = req.body.email;
+    var loginPassword = req.body.userPassword;
+    if (loginEmail && loginPassword) {
+    db.Users.findOne({where : {email: loginEmail, userPassword: loginPassword}}).then(function(response, error) {
+      if (response.dataValues.email === loginEmail && response.dataValues.userPassword === loginPassword){
 
           req.session.loggedin = true;
-          req.session.username = email;
-          res.redirect('/login', next);
+          req.session.username = loginEmail;
+        console.log(req.session.loggedin);
+        res.redirect('../login');
         } else {
           res.send('Incorrect Username and/or Password!');
         }
@@ -32,9 +33,7 @@ module.exports = function(app) {
   });
 
   app.get("/api/login", function(req, res) {
-    db.Users.findAll({}).then(function(user) {
-      res.json(user);
-    });
+    res.send("Logged In")
   });
 
 

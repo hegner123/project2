@@ -34,15 +34,9 @@ var API = {
 
 var refreshLogin = function() {
   API.getLogin().then(function(data) {
-  //   var userLogin = data.map(function(data) {
-  //     var $li = $("<li>")
-  //     .attr({
-  //       class: "list-group-item",
-  //       "data-id": data.firstname
-  //     })
-  // });
-  console.log(data);
-  
+    var confirm = $("<div>");
+    confirm.text(data);
+    confirm.appendTo(".confirm-box");
 }
 )};
 
