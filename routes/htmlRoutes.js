@@ -1,4 +1,5 @@
 var db = require("../models");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
   // Load index page
@@ -6,26 +7,21 @@ module.exports = function(app) {
       res.render("index");
   });
 
-  app.get("/create-account", function(req, res) {
-    res.render("create_account");
+  app.get("/signup", function(req, res) {
+    res.render("signup");
 });
-
-
 
 app.get("/login", function(req, res) {
-  res.render("login");
-});
-
-app.get('/auth', function(request, response) {
-	if (request.session.loggedin) {
-		response.render('index');
-	} else {
-		response.send('Please login to view this page!');
-	}
-	response.end();
-});
-
-  // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
+    if (req.user) {
+      res.redirect("/login/members");
+    } else {
+      res.render("login")
+    };
   });
+
+  app.get("/login/members", isAuthenticated, function(req, res) {
+    res.render('members');
+  });
+
+
 };
