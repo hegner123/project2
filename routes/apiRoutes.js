@@ -1,48 +1,60 @@
 var db = require("../models");
+var passport = require("../config/passport");
 
 module.exports = function(app) {
 
-  // Create a new user
-  app.post("/api/users", function(req, res) {
-    db.Users.create(req.body).then(function(dbUser){
-      res.json(dbUser);
+app.post("/api/login", passport.authenticate("local"), function(req, res) {
+    // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
+    // So we're sending the user back the route to the members page because the redirect will happen on the front end
+    // They won't get this or even be able to access this page if they aren't authed
+    res.json("/login/members");
+});
+
+app.post("/api/signup", function(req, res) {
+    console.log(req.body);
+    db.User.create({
+      email: req.body.email,
+      password: req.body.password,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      address: req.body.address,
+      city: req.body.city,
+      state: req.body.state,
+      zip: req.body.zip
+    }).then(function() {
+      console.log("redirect");
+      res.redirect(307, "/api/login");
+    }).catch(function(err) {
+      console.log(err);
+      res.redirect("back")
     });
-  });
+});
 
-  // User Login
-  app.post('/api/auth', function(req, res, next) {
-    var email = req.body.email;
-    var password = req.body.userPassword;
-    if (email && password) {
-    db.Users.findOne({where : {email: email, userPassword: password}}).then(function(res, error) {
-        if (error) {
-
-          req.session.loggedin = true;
-          req.session.username = email;
-          res.redirect('/login', next);
-        } else {
-          res.send('Incorrect Username and/or Password!');
-        }
-        res.end();
-      });
-    } else {
-      res.send('Please enter Username and Password!');
-      res.end();
-    }
-  });
-
-  app.get("/api/login", function(req, res) {
-    db.Users.findAll({}).then(function(user) {
-      res.json(user);
+app.get("/api/user", function(req, res) {
+  if (!req.user) {
+    // The user is not logged in, send back an empty object
+    console.log('fail')
+    res.json({});
+  }
+  else {
+    // Otherwise send back the user's email and id
+    // Sending back a password, even a hashed password, isn't a good idea
+    console.log('pass')
+    res.json({
+      email: req.user.email,
     });
-  });
+  }
+});
+
+app.get("/logout", function(req, res) {
+  req.logout();
+  res.redirect("/");
+});
+
+app.get("/search", function(req, res) {
+  console.log("req.body" + req.body.author);
+  //console.log("ROUTE" + req.body.);
+})
 
 
-
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
-}
+};

@@ -1,85 +1,132 @@
 
+$(document).ready(function() {
+  // Getting references to our form and input
+  var signUpForm = $("#create-account");
+  var emailInput = $("#input-email");
+  var passwordInput = $("#input-password");
+  var firstNameInput = $("#input-first-name");
+  var lastNameInput = $("#input-last-name");
+  var inputAddress = $("#input-address");
+  var inputCity = $("#input-city");
+  var inputState = $("#input-state");
+  var inputZip = $("#input-zip");
+  $("#failed-login").hide();
 
-// The API object contains methods for each kind of request we'll make
-var API = {
-  saveUser: function (user) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/users",
-      data: JSON.stringify(user)
+  // When the signup button is clicked, we validate the email and password are not blank
+  signUpForm.on("submit", function(event) {
+    event.preventDefault();
+    var userData = {
+      email: emailInput.val().trim(),
+      password: passwordInput.val().trim(),
+      firstName: firstNameInput.val().trim(),
+      lastName: lastNameInput.val().trim(),
+      address: inputAddress.val().trim(),
+      city: inputCity.val().trim(),
+      state: inputState.val().trim(),
+      zip: inputZip.val().trim()
+    };
+
+    if (!userData.email || !userData.password || !userData.firstName || !userData.lastName || !userData.lastName || !userData.address || !userData.city || !userData.state || !userData.zip) {
+      return;
+    }
+    // If we have an email and password, run the signUpUser function
+    signUpUser(userData.email, userData.password, userData.firstName, userData.lastName, userData.address, userData.city, userData.state, userData.zip );
+    emailInput.val("");
+    passwordInput.val("");
+    firstNameInput.val("");
+    lastNameInput.val("");
+    inputAddress.val("");
+    inputCity.val("");
+    inputState.val("");
+    inputZip.val("");
+  });
+
+  // Does a post to the signup route. If succesful, we are redirected to the members page
+  // Otherwise we log any errors
+  function signUpUser(email, password, firstName, lastName, address, city, state, zip) {
+    $.post("/api/signup", {
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      address: address,
+      city: city,
+      state: state,
+      zip: zip
+    }).then(function(data) {
+      window.location.href = '/';
+      // If there's an error, handle it by throwing up a boostrap alert
+    }).catch(handleLoginErr);
+  }
+
+  function handleLoginErr(err) {
+    $("#banner").val("");
+    $("#banner").text(err.responseJSON);
+    $("#banner").fadeIn(500);
+  }
+
+  //LOGIN
+
+  // Getting references to our form and inputs
+  var loginForm = $("#login");
+  var loginEmail = $("#login-email");
+  var loginPassword = $("#login-password");
+  // When the form is submitted, we validate there's an email and password entered
+  loginForm.on("submit", function(event) {
+    event.preventDefault();
+    var userData = {
+      email: loginEmail.val().trim(),
+      password: loginPassword.val().trim()
+    };
+    if (!userData.email || !userData.password) {
+      return;
+    }
+    // If we have an email and password we run the loginUser function and clear the form
+    loginUser(userData.email, userData.password);
+    loginEmail.val("");
+    loginPassword.val("");
+  });
+  // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
+  function loginUser(email, password) {
+    $.post("/api/login", {
+      email: email,
+      password: password
+    }).then(function(data) {
+      window.location.href = data;
+      // If there's an error, log the error
+    }).catch(function(err) {
+      console.log(err);
+      $("#failed-login").show();
     });
-  },
+  }
 
-  loginUser: function (user) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/auth",
-      data:JSON.stringify(user)
-    });
-  },
-  getLogin: function() {
-    return $.ajax({
-      url: "api/login",
-      type: "GET"
-    });
-  },
-
-};
-
-var refreshLogin = function() {
-  API.getLogin().then(function(data) {
-  //   var userLogin = data.map(function(data) {
-  //     var $li = $("<li>")
-  //     .attr({
-  //       class: "list-group-item",
-  //       "data-id": data.firstname
-  //     })
-  // });
-  console.log(data);
+  // This file just does a GET request to figure out which user is logged in
+  // and updates the HTML on the page
   
-}
-)};
+  // Search button on click call search function
+  var search = function(event) {
+    event.preventDefault();
+    var searchParam = {
+      param1: "%" + $("#book_search").val().trim() + "%",
+      param2: "%" + $("#book_search").val().trim() + "%" 
+    };
 
-// Add event listeners to the user signup submit buttons
+    //console.log(searchWord);
+    getSearch(searchParam.param1, searchParam.param2);
+  }
 
-var handleSignUp = function (event) {
-  event.preventDefault();
-  var user = {
-    email: $("#inputEmail").val().trim(),
-    userPassword: $("#inputPassword").val().trim(),
-    firstName: $("#inputFirstName").val().trim(),
-    lastName: $("#inputLastName").val().trim(),
-    address: $("#inputAddress").val().trim(),
-    city: $("#inputCity").val().trim(),
-    state: $("#inputState").val().trim(),
-    zip: $("#inputZip").val().trim(),
-  };
+  function getSearch(param1, param2) {
+    console.log("Param: " + param1 + param2);
+    $.get("/search", {
+      authors: param1,
+      title: param2
+    }).then(function(data) {
+      window.location.href = data;
+    }).catch(function(err) {
+      console.log(err);
+    });
+  }
+ 
+  $("#searchBtn").on("click", search);
 
-  API.saveUser(user).then(function() {
-    console.log("it's working");
-  });
-};
-
-var handleLogin = function (event) {
-  event.preventDefault();
-  var userLogin = {
-    email: $("#loginEmail").val().trim(),
-    userPassword: $("#loginPassword").val().trim(),
-  };
-
-  API.loginUser(userLogin).then(function() {
-    console.log("it's working");
-    refreshLogin();
-  });
-};
-
-$("#login-btn").on("click", handleLogin);
-$("#signupBtn").on("click", handleSignUp);
-
-
+});
