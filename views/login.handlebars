@@ -1,20 +1,73 @@
-    <!-- Form -->
+<!-- Navigation -->
+<div class="bg-dark">
+  <ul class="nav justify-content-end bg-dark py-1">
+    <li class="nav-item">
+      <a class="nav-link text-white" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" href="/create-account">Create Account</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" href="/login">Login</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" href="/profile">Profile</a>
+    </li>
+  </ul>
+</div>
+
+<!-- Header/Title -->
+<div class="jumbotron jumbotron-fluid bg-white text-dark mb-0">
+  <div class="container">
     <div class="row">
-        <div class="col-md-5">
-            <img src="./images/bookshelf2.jpg" class="img-fluid" alt="The Road Less Traveled">
+      <div class="col-md-9">
+        <h1 class="display-3 font-weight-bold">Login</h1>
+        <h5 class="font-weight-light">Welcome back!  Please login to your account in order to continue with your checkout process.  If you forgot your login username or password, please contact customer support and one of our librarians will be able to support you.</p>
+      </div>
+      <div class="col-md-3 text-center">
+        <img src="./images/stacked_books.jpg" alt="Stacked Books" class="img-thumbnail border-white">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Form -->
+<div class="row bg-secondary">
+    <div class="col-md-6">
+        <img src="./images/bookshelf3.jpg" class="img-fluid" alt="The Road Less Traveled">
+    </div>
+    <div class="col-md-5 border-dark ml-4">
+        <div class="row">
+            <div class="form-group col-md-12 text-center mt-5">
+                <h3>Please Enter Your Email and Password Below</h3>
+            </div>
         </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="form-group col-md-12">
-                    <h1 class="display-3 text-center font-weight-bold">The Breakfast Club</h1>
-                </div>
+        <form id="login" action="auth" method="POST">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="loginEmail">Email</label>
+              <input type="email" class="form-control" id="loginEmail" placeholder="Email">
             </div>
-            <div class="row">
-                <div class="form-group col-md-12">
-                    <p class="text-center">The fastest and safest place to checkout your favorite books, browse book selections and provide helpful reviews for other book loving readers!</p>
-                    <p class="welcome"></p>
-                </div>
+<<<<<<< HEAD
+            <div class="form-group col-md-6">
+              <label for="loginPassword">Password</label>
+              <input type="password" class="form-control" id="loginPassword" placeholder="Password">
             </div>
+          </div>
+          <button type="button" class="btn btn-success btn-lg btn-block border-dark" id="login-btn" >Login </button>
+        </form>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="bg-dark">
+  <ul class="nav justify-content-center bg-dark pt-3 pb-2">
+    <p class="text-white">The Breakfast Club - Copyright 2019 ©</p>
+  </ul>
+</div>
+
+<!-- JS,JQuery & Popper -->
+=======
             <div class="row">
                 <div class="form-group col-md-12">
                     <h4>Login:</h4>
@@ -38,3 +91,4 @@
             </form>
         </div>
     </div>
+>>>>>>> d159d01751c165da4955d8e3469e36717f0efe72
