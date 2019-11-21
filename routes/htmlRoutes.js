@@ -15,6 +15,27 @@ module.exports = function(app) {
     res.render("signup");
 });
 
+<<<<<<< HEAD
+
+app.get("/login", function(req, res) {
+  res.render("login");
+});
+
+
+app.get("/profile", function(req, res) {
+  res.render("profile");
+});
+
+
+app.get('/auth', function(request, response) {
+	if (request.session.loggedin) {
+		response.render('index');
+	} else {
+		response.send('Please login to view this page!');
+	}
+	response.end();
+});
+=======
 app.get("/login", function(req, res) {
     if (req.user) {
       res.redirect("/login/members");
@@ -22,10 +43,15 @@ app.get("/login", function(req, res) {
       res.render("login")
     };
   });
+>>>>>>> master
 
   app.get("/login/members", isAuthenticated, function(req, res) {
     res.render('members');
   });
+
+  app.get("*", function (req,res){
+    res.render('404');
+  })
 
 
 };
