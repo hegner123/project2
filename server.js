@@ -19,9 +19,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Handlebars
-app.engine( 'handlebars', hbs( { 
-  extname: 'handlebars', 
-  defaultLayout: 'main', 
+app.engine( 'handlebars', hbs( {
+  extname: 'handlebars',
+  defaultLayout: 'main',
   layoutsDir: __dirname + '/views/layouts/',
   partialsDir: __dirname + '/views/partials/'
 } ) );
