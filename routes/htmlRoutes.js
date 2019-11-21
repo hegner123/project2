@@ -22,4 +22,10 @@ app.get("/login", function(req, res) {
   app.get("/login/members", isAuthenticated, function(req, res) {
     res.render('members');
   });
+
+  app.get("*", function (req,res){
+    res.render('404');
+  })
+
+
 };
