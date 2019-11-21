@@ -4,49 +4,58 @@ var LocalStrategy = require("passport-local").Strategy;
 //
 //We will need the models folder to check passport agains
 var db = require("../models");
-//
-// Telling passport we want to use a Local Strategy. In other words,
-//we want login with a username/email and password
-passport.use(new LocalStrategy(
-  // Our user will sign in using an email, rather than a "username"
-  {
-    usernameField: "email"
-  },
-  function(email, password, done) {
-    // When a user tries to sign in this code runs
-    db.User.findOne({
-      where: {
-        email: email
-      }
-    }).then(function(dbUser) {
-      // If there's no user with the given email
-      if (!dbUser) {
-        return done(null, false, {
-          message: "Incorrect email."
-        });
-      }
-      // If there is a user with the given email, but the password the user gives us is incorrect
-      else if (!dbUser.validPassword(password)) {
-        return done(null, false, {
-          message: "Incorrect password."
-        });
-      }
-      // If none of the above, return the user
-      return done(null, dbUser);
+var passport = require("../config/passport");
+
+module.exports = function(app) {
+
+app.post("/api/login", passport.authenticate("local"), function(req, res) {
+    // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
+    // So we're sending the user back the route to the members page because the redirect will happen on the front end
+    // They won't get this or even be able to access this page if they aren't authed
+    res.json("/login/members");
+});
+
+app.post("/api/signup", function(req, res) {
+    console.log(req.body);
+    db.User.create({
+      email: req.body.email,
+      password: req.body.password,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      address: req.body.address,
+      city: req.body.city,
+      state: req.body.state,
+      zip: req.body.zip
+    }).then(function() {
+      console.log("redirect");
+      res.redirect(307, "/api/login");
+    }).catch(function(err) {
+      console.log(err);
+      res.redirect("back")
+    });
+});
+
+app.get("/api/user", function(req, res) {
+  if (!req.user) {
+    // The user is not logged in, send back an empty object
+    console.log('fail')
+    res.json({});
+  }
+  else {
+    // Otherwise send back the user's email and id
+    // Sending back a password, even a hashed password, isn't a good idea
+    console.log('pass')
+    res.json({
+      email: req.user.email,
     });
   }
-));
-//
-// In order to help keep authentication state across HTTP requests,
-// Sequelize needs to serialize and deserialize the user
-// Just consider this part boilerplate needed to make it all work
-passport.serializeUser(function(user, cb) {
-  cb(null, user);
 });
-//
-passport.deserializeUser(function(obj, cb) {
-  cb(null, obj);
+
+app.get("/logout", function(req, res) {
+  req.logout();
+  res.redirect("/");
 });
-//
-// Exporting our configured passport
-module.exports = passport;
+
+
+
+};
