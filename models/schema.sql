@@ -1,5 +1,5 @@
 ### Schema
-DROP IF EXISTS project2_db;
+DROP DATABASE IF EXISTS project2_db;
 CREATE DATABASE project2_db;
 
 USE project2_db;
@@ -11,6 +11,7 @@ create table books (
     original_publish_year int,
     title text,
     qty_on_hand int,
+    qty_checked_out int,
     book_rating double,
     image_url text,
     small_image_url text,

@@ -49,5 +49,9 @@ app.get("/login", function(req, res) {
     res.render('members');
   });
 
+  app.get("*", function (req,res){
+    res.render('404');
+  })
+
 
 };

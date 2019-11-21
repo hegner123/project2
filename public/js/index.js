@@ -65,10 +65,6 @@ $(document).ready(function() {
     $("#banner").fadeIn(500);
   }
 
-
-
-
-
   //LOGIN
 
   // Getting references to our form and inputs
@@ -107,5 +103,30 @@ $(document).ready(function() {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
   
+  // Search button on click call search function
+  var search = function(event) {
+    event.preventDefault();
+    var searchParam = {
+      param1: "%" + $("#book_search").val().trim() + "%",
+      param2: "%" + $("#book_search").val().trim() + "%" 
+    };
+
+    //console.log(searchWord);
+    getSearch(searchParam.param1, searchParam.param2);
+  }
+
+  function getSearch(param1, param2) {
+    console.log("Param: " + param1 + param2);
+    $.get("/search", {
+      authors: param1,
+      title: param2
+    }).then(function(data) {
+      window.location.href = data;
+    }).catch(function(err) {
+      console.log(err);
+    });
+  }
+ 
+  $("#searchBtn").on("click", search);
 
 });

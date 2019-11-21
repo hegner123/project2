@@ -56,6 +56,10 @@ app.get("/logout", function(req, res) {
   res.redirect("/");
 });
 
+app.get("/search", function(req, res) {
+  console.log("req.body" + req.body.author);
+  //console.log("ROUTE" + req.body.);
+})
 
 <<<<<<< HEAD
   // Delete an example by id

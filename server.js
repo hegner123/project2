@@ -1,12 +1,10 @@
 // Requiring necessary npm packages
-var exphbs = require("express-handlebars")
-var express = require("express");
+var express     = require( 'express'),
+    hbs         = require( 'express-handlebars' ),
+    app         = express();
 var bodyParser = require("body-parser");
 var session = require("express-session");
-// Requiring passport as we've configured it
 var passport = require("./config/passport");
-//
-// Setting up port and requiring models for syncing
 var PORT = process.env.PORT || 8080;
 var db = require("./models");
 //
@@ -23,12 +21,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
-);
+app.engine( 'handlebars', hbs( {
+  extname: 'handlebars',
+  defaultLayout: 'main',
+  layoutsDir: __dirname + '/views/layouts/',
+  partialsDir: __dirname + '/views/partials/'
+} ) );
 app.set("view engine", "handlebars");
 
 // Routes
@@ -46,6 +44,6 @@ if (process.env.NODE_ENV === "test") {
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
   app.listen(PORT, function() {
-    console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+    console.log("Listening on " + PORT);
   });
 });
