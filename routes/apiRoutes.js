@@ -45,6 +45,4 @@ module.exports = function(app) {
       res.json(dbExample);
     });
   });
-
-
 }
