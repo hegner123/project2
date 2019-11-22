@@ -2,14 +2,9 @@ var db = require("../models");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
-//
+  // Load index page
   app.get("/", function(req, res) {
-    // If the user already has an account send them to the members page
-    if (req.user) {
-      res.redirect("/profile");
-    }
-    res.render("index");
-
+      res.render("index");
   });
 
   app.get("/create-account", function(req, res) {

@@ -1,8 +1,3 @@
-//we import passport packages required for authentication
-var passport = require("passport");
-var LocalStrategy = require("passport-local").Strategy;
-//
-//We will need the models folder to check passport agains
 var db = require("../models");
 var passport = require("../config/passport");
 
