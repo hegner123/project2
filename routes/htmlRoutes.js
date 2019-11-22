@@ -7,20 +7,20 @@ module.exports = function(app) {
       res.render("index");
   });
 
-  app.get("/signup", function(req, res) {
+  app.get("/create-account", function(req, res) {
     res.render("signup");
 });
 
 app.get("/login", function(req, res) {
     if (req.user) {
-      res.redirect("/login/members");
+      res.redirect("/profile");
     } else {
       res.render("login")
     };
   });
 
-  app.get("/login/members", isAuthenticated, function(req, res) {
-    res.render('members');
+  app.get("/profile", isAuthenticated, function(req, res) {
+    res.render('profile');
   });
 
   app.get("*", function (req,res){
