@@ -1,20 +1,4 @@
-<!-- Navigation -->
-<div class="bg-dark">
-  <ul class="nav justify-content-end bg-dark py-1">
-    <li class="nav-item">
-      <a class="nav-link text-white" href="/">Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-white" href="/create-account">Create Account</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-white" href="/login">Login</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-white" href="/profile">Profile</a>
-    </li>
-  </ul>
-</div>
+
 
 <!-- Header/Title -->
 <div class="jumbotron jumbotron-fluid bg-white text-dark mb-0">
@@ -22,7 +6,7 @@
     <div class="row">
       <div class="col-md-9">
         <h1 class="display-3 font-weight-bold">Profile</h1>
-        <h5 class="font-weight-light">Thanks for completeing your profile!  Be sure to update it frequently in order to have the most updated information.</p>
+        <h5 class="font-weight-light">Thanks for completeing your profile <span id="welcome-banner"></span>. Be sure to update it frequently in order to have the most updated information.</p>
       </div>
       <div class="col-md-3 text-center">
         <img src="./images/stacked_books.jpg" alt="Stacked Books" class="img-thumbnail border-white">
@@ -51,41 +35,37 @@
         <form id="create-account">
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="inputEmail4">First Name</label>
-              <input type="text" class="form-control" id="inputFirstName">
+              <label for="input-first-name">First Name</label>
+              <input type="text" class="form-control" id="input-first-name" placeholder="First Name">
             </div>
             <div class="form-group col-md-6">
-              <label for="inputPassword4">Last Name</label>
-              <input type="text" class="form-control" id="inputLastName">
+              <label for="input-last-name">Last Name</label>
+              <input type="text" class="form-control" id="input-last-name" placeholder="Last Name">
             </div>
             <div class="form-group col-md-6">
-              <label for="inputEmail4">Email</label>
-              <input type="email" class="form-control" id="inputEmail">
+              <label for="input-email">Email</label>
+              <input type="email" class="form-control" id="input-email" placeholder="Email">
             </div>
             <div class="form-group col-md-6">
-              <label for="inputPassword4">Password</label>
-              <input type="password" class="form-control" id="inputPassword">
+              <label for="input-password">Password</label>
+              <input type="password" class="form-control" id="input-password" placeholder="Password">
             </div>
           </div>
           <div class="form-group">
-            <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="inputAddress">
+            <label for="input-address">Address</label>
+            <input type="text" class="form-control" id="input-address" placeholder="1234 Main St">
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="inputCity">City</label>
-              <input type="text" class="form-control" id="inputCity">
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputState">State</label>
-              <input type="text" class="form-control" id="inputState">
+              <label for="input-city">City</label>
+              <input type="text" class="form-control" id="input-city">
             </div>
             <div class="form-group col-md-2">
-              <label for="inputZip">Zip</label>
-              <input type="text" class="form-control" id="inputZip">
+              <label for="input-zip">Zip</label>
+              <input type="text" class="form-control" id="input-zip">
             </div>
           </div>
-          <button type="submit" class="btn btn-danger btn-lg btn-block border-dark" id="signupBtn">Delete Account</button>
+          <button type="submit" class="btn btn-success btn-lg btn-block border-dark" id="signup-btn">Create Account</button>
         </form>
     </div>
 </div>
@@ -96,3 +76,5 @@
     <p class="text-white">The Breakfast Club - Copyright 2019 ©</p>
   </ul>
 </div>
+
+<script src="/js/user.js"></script>
