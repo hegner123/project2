@@ -15,7 +15,6 @@ module.exports = function(app) {
     res.render("signup");
 });
 
-<<<<<<< HEAD
 
 app.get("/login", function(req, res) {
   res.render("login");
@@ -35,15 +34,6 @@ app.get('/auth', function(request, response) {
 	}
 	response.end();
 });
-=======
-app.get("/login", function(req, res) {
-    if (req.user) {
-      res.redirect("/login/members");
-    } else {
-      res.render("login")
-    };
-  });
->>>>>>> master
 
   app.get("/login/members", isAuthenticated, function(req, res) {
     res.render('members');
