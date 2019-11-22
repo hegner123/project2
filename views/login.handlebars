@@ -1,4 +1,5 @@
     <!-- Form -->
+    <div class="container">
     <div class="row">
       <div class="col-md-9">
         <h1 class="display-3 font-weight-bold">Login</h1>
@@ -10,8 +11,6 @@
     </div>
   </div>
 </div>
-
-<!-- Form -->
 <div class="row bg-secondary">
     <div class="col-md-6">
         <img src="./images/bookshelf3.jpg" class="img-fluid" alt="The Road Less Traveled">
@@ -28,25 +27,26 @@
               <label for="loginEmail">Email</label>
               <input type="email" class="form-control" id="loginEmail" placeholder="Email">
             </div>
-            <div class="row">
-                <div class="form-group col-md-12">
-                    <h4>Login:</h4>
-                    <h4 id="banner"></h4>
-                </div>
+
+            <div class="form-group col-md-6">
+              <label for="loginPassword">Password</label>
+              <input type="password" class="form-control" id="loginPassword" placeholder="Password">
             </div>
-            <form id="login" action="auth" method="POST">
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="login-email">Email</label>
-                  <input type="email" class="form-control" id="login-email" placeholder="Email">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="login-password">Password</label>
-                  <input type="password" class="form-control" id="login-password" placeholder="Password">
-                  <p id="failed-login" style="display:none">Incorrect Password</p>
-                </div>
-              </div>
-             <button ="button" class="btn btn-primary btn-lg btn-block" id="login-btn" >Login </button>
-            </form>
-        </div>
+          </div>
+          <button type="button" class="btn btn-success btn-lg btn-block border-dark" id="login-btn" >Login </button>
+        </form>
     </div>
+</div>
+</div>
+
+<!-- Footer -->
+<div class="row">
+  <div class="col-12 fixed-bottom p-0">
+<div class="bg-dark">
+  <ul class="nav justify-content-center bg-dark pt-3 pb-2">
+    <p class="text-white">The Breakfast Club - Copyright 2019 ©</p>
+  </ul>
+</div>
+</div>
+</div>
+
