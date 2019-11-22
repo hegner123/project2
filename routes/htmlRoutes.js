@@ -19,13 +19,13 @@ app.get("/login", function(req, res) {
     };
   });
 
-  app.get("/profile", isAuthenticated, function(req, res) {
+app.get("/profile", isAuthenticated, function(req, res) {
     res.render('profile');
   });
 
   app.get("*", function (req,res){
     res.render('404');
-  })
+  });
 
 
 };
