@@ -12,7 +12,7 @@ app.post("/api/login", passport.authenticate("local"), function(req, res) {
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
     // They won't get this or even be able to access this page if they aren't authed
-    res.json("/login/members");
+    res.json("/profile");
 });
 
 app.post("/api/signup", function(req, res) {
@@ -28,7 +28,7 @@ app.post("/api/signup", function(req, res) {
       zip: req.body.zip
     }).then(function() {
       console.log("redirect");
-      res.redirect(307, "/api/login");
+      res.redirect(307, "/profile");
     }).catch(function(err) {
       console.log(err);
       res.redirect("back")
