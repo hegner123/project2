@@ -39,10 +39,6 @@ if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
 
-// Express Engine
-var pageController = require('./routes/htmlRoutes');
-
-var app = express();s
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
   app.listen(PORT, function() {
