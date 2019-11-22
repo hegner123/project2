@@ -1,0 +1,40 @@
+    <!-- Form -->
+    <div class="row">
+        <div class="col-md-5">
+            <img src="./images/bookshelf2.jpg" class="img-fluid" alt="The Road Less Traveled">
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <h1 class="display-3 text-center font-weight-bold">The Breakfast Club</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <p class="text-center">The fastest and safest place to checkout your favorite books, browse book selections and provide helpful reviews for other book loving readers!</p>
+                    <p class="welcome"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <h4>Login:</h4>
+                    <h4 id="banner"></h4>
+                </div>
+            </div>
+
+            <form id="login" action="auth" method="POST">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="login-email">Email</label>
+                  <input type="email" class="form-control" id="login-email" placeholder="Email">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="login-password">Password</label>
+                  <input type="password" class="form-control" id="login-password" placeholder="Password">
+                  <p id="failed-login" style="display:none">Incorrect Password</p>
+                </div>
+              </div>
+             <button ="button" class="btn btn-primary btn-lg btn-block" id="login-btn" >Login </button>
+            </form>
+        </div>
+    </div>
