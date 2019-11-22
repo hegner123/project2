@@ -1,3 +1,6 @@
+body {
+  padding:0 !important;
+}
 ::-webkit-scrollbar {
   display: none;
 }
@@ -5,9 +8,15 @@
 .list-group-item {
   line-height: 2.5;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> b33e6ca3bd93590b76bb9417291c0fad04b61a0c
 form.signup,
 form.login {
   margin-top: 50px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> b33e6ca3bd93590b76bb9417291c0fad04b61a0c
