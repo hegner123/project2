@@ -31,7 +31,7 @@ app.post("/api/signup", function(req, res) {
       res.redirect(307, "/profile");
     }).catch(function(err) {
       console.log(err);
-      res.redirect("back")
+      res.redirect("/profile")
     });
 });
 

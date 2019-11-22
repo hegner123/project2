@@ -9,21 +9,14 @@ module.exports = function(app) {
   });
 
   app.get("/create-account", function(req, res) {
-    res.render("create-account");
+
+      res.render("create-account");
 });
 
 
 app.get("/login", function(req, res) {
   res.render("login");
 });
-
-
-app.get("/profile", function(req, res) {
-  res.render("profile");
-});
-
-
-
 
   app.get("/profile", isAuthenticated, function(req, res) {
     res.render('profile');
