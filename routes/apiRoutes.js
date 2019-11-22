@@ -28,7 +28,7 @@ app.post("/api/signup", function(req, res) {
       zip: req.body.zip
     }).then(function() {
       console.log("redirect");
-      res.redirect(307, "/api/login");
+      res.redirect(307, "/profile");
     }).catch(function(err) {
       console.log(err);
       res.redirect("back")
@@ -61,5 +61,10 @@ app.get("/search", function(req, res) {
   //console.log("ROUTE" + req.body.);
 })
 
-
-};
+  // Delete an example by id
+  app.delete("/api/examples/:id", function(req, res) {
+    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
+      res.json(dbExample);
+    });
+  });
+}
