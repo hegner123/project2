@@ -1,3 +1,6 @@
+body {
+  padding:0 !important;
+}
 ::-webkit-scrollbar {
   display: none;
 }
@@ -10,7 +13,9 @@
 .main{
   margin-top: -50px;
 }
-
+#title{
+  margin-top: 0px;
+}
 
 #header {
   font-size: 3rem;
@@ -24,4 +29,13 @@
 } 
 .card{
   margin-bottom: 60px;
+}
+form.signup,
+form.login {
+  margin-top: 50px;
+}
+
+.profile-info-display {
+  text-decoration: none;
+  list-style: none;
 }

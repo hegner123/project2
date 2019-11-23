@@ -3,7 +3,7 @@
   <div class="container text-white">
     <h1 class="display-3 font-weight-bold">The Breakfast Club</h1>
     <h5 class="font-weight-light">“If we encounter a man of rare intellect, we should ask him what books he reads.” – Ralph Waldo Emerson</p>
-    <a class="btn btn-dark btn-lg" href="/signup" role="button">Sign Up</a>
+    <a class="btn btn-dark btn-lg" href="/create-account" role="button">Sign Up</a>
     <a class="btn btn-dark btn-lg" href="/login" role="button">Login</a>
   </div>
 </div>
@@ -18,13 +18,13 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="./images/new_releases_final.jpg" class="d-block w-100" alt="New Releases">
+        <img src="/images/new_releases_final.jpg" class="d-block w-100" alt="New Releases">
       </div>
       <div class="carousel-item">
-        <img src="./images/electronic_books_final.jpg" class="d-block w-100" alt="Electronic Books">
+        <img src="/images/electronic_books_final.jpg" class="d-block w-100" alt="Electronic Books">
       </div>
       <div class="carousel-item">
-        <img src="./images/book_reviews_final.jpg" class="d-block w-100" alt="Book Reviews">
+        <img src="/images/book_reviews_final.jpg" class="d-block w-100" alt="Book Reviews">
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
@@ -45,7 +45,7 @@
       <div>
         <div class="row no-gutters pb-5">
           <div class="col-md-2">
-            <img src="./images/hunger_games.jpg" class="card-img" alt="The Hunger Games">
+            <img src="/images/hunger_games.jpg" class="card-img" alt="The Hunger Games">
           </div>
           <div class="col-md-4">
             <div class="card-body">
@@ -55,7 +55,7 @@
             </div>
           </div>
           <div class="col-md-2">
-            <img src="./images/the_shining.jpg" class="card-img" alt="The Shining">
+            <img src="/images/the_shining.jpg" class="card-img" alt="The Shining">
           </div>
           <div class="col-md-4">
             <div class="card-body">
@@ -69,7 +69,7 @@
       <div>
         <div class="row no-gutters pb-5">
           <div class="col-md-2">
-            <img src="./images/lord_of_the_rings.jpg" class="card-img" alt="Lord of the Rings">
+            <img src="/images/lord_of_the_rings.jpg" class="card-img" alt="Lord of the Rings">
           </div>
           <div class="col-md-4">
             <div class="card-body">
@@ -79,7 +79,7 @@
             </div>
           </div>
           <div class="col-md-2">
-            <img src="./images/in_cold_blood.jpg" class="card-img" alt="In Cold Blood">
+            <img src="/images/in_cold_blood.jpg" class="card-img" alt="In Cold Blood">
           </div>
           <div class="col-md-4">
             <div class="card-body">
@@ -93,7 +93,7 @@
       <div>
         <div class="row no-gutters">
           <div class="col-md-2">
-            <img src="./images/harry_potter.jpg" class="card-img" alt="Harry Potter and the Deathly Hallows">
+            <img src="/images/harry_potter.jpg" class="card-img" alt="Harry Potter and the Deathly Hallows">
           </div>
           <div class="col-md-4">
             <div class="card-body">
@@ -103,7 +103,7 @@
             </div>
           </div>
           <div class="col-md-2">
-            <img src="./images/game_of_thrones.jpg" class="card-img" alt="A Game of Thrones">
+            <img src="/images/game_of_thrones.jpg" class="card-img" alt="A Game of Thrones">
           </div>
           <div class="col-md-4">
             <div class="card-body">
@@ -122,20 +122,30 @@
 <div class="jumbotron jumbotron-fluid bg-secondary mb-0">
   <div class="container text-dark">
     <h1 class="display-3 font-weight-bold pb-5 text-white">Search Book Inventory</h1>
-      <div class="row">
-        <div class="col-sm-4">
-          <form>
-            <div class="form-group text-white">
-              <label for="exampleInputEmail1">Search Book Titles For Availability</label>
-              <input type="search" class="form-control" id="book_search" aria-describedby="searchHelp" placeholder="Enter Book Title">
-            </div>
-            <button type="submit" class="btn btn-dark btn-block ">Submit</button>
-          </form>
-        </div>
-        <div class="col-sm-7 border border-white mt-2 ml-5">
-          <h2 class="text-center text-white mt-2">Would you like to check-out?</h2>
-        </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <form>
+          <div class="form-group text-white">
+            <label for="exampleInputEmail1">Search Book Titles For Availability</label>
+            <input type="search" class="form-control" id="book_search" aria-describedby="searchHelp"
+              placeholder="Enter Book Title">
+          </div>
+          <button type="submit" class="btn btn-dark btn-block" id="searchBtn">Submit</button>
+        </form>
       </div>
+      <div class="col-sm-7 border border-white mt-2 ml-5" id="list">
+        <h2 class="text-center text-white mt-2">Would you like to check-out?</h2>
+        <ul id="result-list" class="list-group">
+          {{#each bookList}}
+          <li data-id="{{this.book_id}}" class="list-group-item">
+            <a href="example/{{this.book_id}}">{{this.title}}</a>
+            <button class="btn  float-right chkoutBtn" id= "{{this.book_id}}" value ="{{this.title}}">Checkout</button>
+            <button class="btn  float-right ">More Details</button>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
 
