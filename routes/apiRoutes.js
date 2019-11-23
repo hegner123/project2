@@ -1,3 +1,8 @@
+//we import passport packages required for authentication
+var passport = require("passport");
+var LocalStrategy = require("passport-local").Strategy;
+//
+//We will need the models folder to check passport agains
 var db = require("../models");
 var passport = require("../config/passport");
 
@@ -7,7 +12,7 @@ app.post("/api/login", passport.authenticate("local"), function(req, res) {
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
     // They won't get this or even be able to access this page if they aren't authed
-    res.json("/login/members");
+    res.json("/profile");
 });
 
 app.post("/api/signup", function(req, res) {
@@ -23,10 +28,10 @@ app.post("/api/signup", function(req, res) {
       zip: req.body.zip
     }).then(function() {
       console.log("redirect");
-      res.redirect(307, "/api/login");
+      res.redirect(307, "/profile");
     }).catch(function(err) {
       console.log(err);
-      res.redirect("back")
+      res.redirect("/profile")
     });
 });
 
@@ -51,10 +56,48 @@ app.get("/logout", function(req, res) {
   res.redirect("/");
 });
 
-app.get("/search", function(req, res) {
-  console.log("req.body" + req.body.author);
-  //console.log("ROUTE" + req.body.);
-})
+// apiRoute to handle search
+app.get("/search/:id", function (req, res) {
 
+  db.Book.findAll({
+    where: {
+      [db.Sequelize.Op.or]: [
+        { authors: { [db.Sequelize.Op.like]: '%' + req.params.id + '%' } },
+        { title: { [db.Sequelize.Op.like]: '%' + req.params.id + '%' } },
+      ]
+    }
+  }).then(function (dbBook) {
+    res.json(dbBook);
+    console.log(dbBook);
+  }).catch(function (err) {
+    // Whenever a validation or flag fails, an error is thrown
+    // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+    res.json(err);
+  });
+});
 
-};
+  // update qty in book table
+  app.put("/updateQty/:book_id", function(req, res) {
+    
+    db.Book.update({
+      qty_on_hand: req.body.new_qty_on_hand,
+      qty_checked_out: req.body.new_qty_checkedout
+    }, {
+      where: {
+        book_id: req.body.book_id
+      }
+    }).then(function(dbBook) {
+      res.json(dbBook);
+      console.log(dbBook);
+    }).catch(function(err) {
+      res.json(err);
+    });
+  });
+
+  // Delete an example by id
+  app.delete("/api/examples/:id", function(req, res) {
+    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
+      res.json(dbExample);
+    });
+  });
+}
