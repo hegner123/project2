@@ -187,13 +187,29 @@ $(document).ready(function() {
       for(var i=0; i< searchResult.length; i++) {
         if(btnId == searchResult[i].book_id && searchResult[i].qty_on_hand>0) {
           console.log("enough in stock");
+          var qty = {
+            new_qty_on_hand: (searchResult[i].qty_on_hand)-1,
+            new_qty_checkedout: (searchResult[i].qty_checked_out)+1,
+            book_id: btnId
+          }
+          updateQty(qty);
         }
         else{
           //Pop up message with not available right now
         }
       }
     };
-  
+
+    function updateQty(qty) {
+      console.log("under update func: " + qty.book_id);
+      $.ajax({
+        method: "PUT",
+        url: "/updateQty/" + qty.book_id,
+        data: qty
+
+      }).then(console.log("qty update successful"));
+    }
+
     // search button click
     $("#searchBtn").on("click", search);
    
