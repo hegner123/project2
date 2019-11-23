@@ -1,23 +1,19 @@
 <!-- Header/Title -->
-<div class="jumbotron jumbotron-fluid bg-success text-white mb-0">
+<div class="container-fluid">
+  <div class="row bg-success">
   <div class="container">
     <div class="row">
-      <div class="col-md-9">
-        <h1 class="display-3 font-weight-bold">Profile</h1>
-        <h5 class="font-weight-light">Thanks for completeing your profile <span id="welcome-banner"></span>. Be sure to
-          update it frequently in order to have the most updated information.</p>
-      </div>
-      <div class="col-md-3 text-center">
-        <img src="./images/stacked_books.jpg" alt="Stacked Books">
+      <div class="col-6">
+        <h1 class="display-3 font-weight-bold text-white ">Profile</h1>
       </div>
     </div>
+    </div>
   </div>
-</div>
 
 <!-- Form -->
-<div class="container">
+
   <div class="row">
-    <div class="col-5">
+    <div class="col-5 mt-3">
       <img src="./images/profile_pic.jpg" class="img-fluid" alt="Profile Picture">
     </div>
     <div class="form-group col-5 text-center mt-5">
@@ -33,13 +29,42 @@
       </div>
       <div class="row">
         <div class="col-12 text-center">
-          <button id="delete-profile" class="btn bg-danger">Delete Profile</button>
+          <button id="logout" class="btn btn-secondary col-12 col-lg-4 col-md-4">Logout</button>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-12 text-center">
+          <button id="delete-btn" class="btn bg-danger col-12 col-lg-4 col-md-4 text-white">Delete Profile</button>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<div class="modal delete-modal" tabindex="-1" role="dialog" id="delete-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Please enter your password to delete your profile permanently.</p>
+        <form id="delete-profile">
+          <label for="delete-password">Password</label>
+          <input type="password" class="form-control" id="delete-password">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="delete-account" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
 </div>
+
 
 <!-- Footer -->
 <div class="container-fluid p-0 fixed-bottom">
