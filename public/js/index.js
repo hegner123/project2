@@ -110,11 +110,11 @@ $(document).ready(function() {
     var search = function (event) {
       event.preventDefault();
       var searchInput = $("#book_search").val().trim();
-  
+
       // take user input and call function to get query result
       getSearch(searchInput);
     }
-  
+
     // function to get database result
     function getSearch(param1) {
       var id = param1;
@@ -123,7 +123,7 @@ $(document).ready(function() {
         method: "GET",
         url: "/search/" + id
       }).then(function (data) {
-        
+
         //var x = data.map(v => v.title + " by " + v.authors);
         //console.log(x[0]);
 

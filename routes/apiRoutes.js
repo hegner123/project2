@@ -69,7 +69,6 @@ app.get("/search/:id", function (req, res) {
   }).then(function (dbBook) {
     res.json(dbBook);
     console.log(dbBook);
-    
   }).catch(function (err) {
     // Whenever a validation or flag fails, an error is thrown
     // We can "catch" the error to prevent it from being "thrown", which could crash our node app
