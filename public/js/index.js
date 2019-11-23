@@ -142,20 +142,20 @@ $(document).ready(function() {
   
           var $li = $("<li>")
             .attr({
-              class: "list-group-item",
+              class: "list-group-item bg-secondary",
               "data-id": book.book_id
             })
             .append($a);
   
           var $chkbutton = $("<button>")
-            .addClass("btn float-right chkoutBtn")
+            .addClass("btn float-right chkoutBtn bg-white")
             .text("Checkout")
             .attr({
               value: book.title,
               id: book.book_id
             });
           var $detailbutton = $("<button>")
-            .addClass("btn float-right ")
+            .addClass("btn float-right bg-white mr-2")
             .text("More Details")
   
   
