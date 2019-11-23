@@ -1,5 +1,3 @@
-
-
 var bcrypt = require("bcryptjs");
 //
 // Creating our User model
@@ -51,7 +49,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     }
   });
-  
+
   User.associate = function(models) {
     // Associating Author with Posts
     // When an Author is deleted, also delete any associated Posts
