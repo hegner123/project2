@@ -56,10 +56,26 @@ app.get("/logout", function(req, res) {
   res.redirect("/");
 });
 
-app.get("/search", function(req, res) {
-  console.log("req.body" + req.body.author);
-  //console.log("ROUTE" + req.body.);
-})
+// apiRoute to handle search
+app.get("/search/:id", function (req, res) {
+
+  db.Book.findAll({
+    where: {
+      [db.Sequelize.Op.or]: [
+        { authors: { [db.Sequelize.Op.like]: '%' + req.params.id + '%' } },
+        { title: { [db.Sequelize.Op.like]: '%' + req.params.id + '%' } },
+      ]
+    }
+  }).then(function (dbBook) {
+    res.json(dbBook);
+    console.log(dbBook);
+    
+  }).catch(function (err) {
+    // Whenever a validation or flag fails, an error is thrown
+    // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+    res.json(err);
+  });
+});
 
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
