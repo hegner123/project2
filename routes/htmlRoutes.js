@@ -7,6 +7,14 @@ module.exports = function(app) {
       res.render("index");
   });
 
+  app.get("/book-preview", function(req, res) {
+    res.render("book-preview");
+});
+
+  app.get("/book", function(req, res) {
+    res.render("book");
+});
+
   app.get("/signup", function(req, res) {
     res.render("signup");
 });
