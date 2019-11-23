@@ -1,5 +1,5 @@
 
-google.books.setOnLoadCallback(initialize);
+
 $(document).ready(function() {
 
   // This file just does a GET request to figure out which user is logged in
@@ -198,7 +198,7 @@ $(document).ready(function() {
                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                            <span aria-hidden="true">&times;</span>
                          </button>
-          
+
                        </div>
                              <div class="modal-body">
 
@@ -268,7 +268,7 @@ function initialize() {
   viewer.load('ISBN:'+bookIsbn);
 }
 
-google.books.setOnLoadCallback(initialize);
+
 
 // End of book code
 

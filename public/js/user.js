@@ -14,8 +14,9 @@ $(document).ready(function(){
     $('#delete-modal').modal('show');
   });
 
-  $("#delete-profile").on("click", function (){
-      var deleteEmail = $("#profile-email");
+  $("#delete-account").on("click", function (){
+      var deleteEmail = $("#profile-email").text;
+      console.log(deleteEmail);
       var deletePassword = $("#delete-password");
       event.preventDefault();
       var userData = {
