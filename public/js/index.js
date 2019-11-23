@@ -157,6 +157,8 @@ $(document).ready(function() {
           var $detailbutton = $("<button>")
             .addClass("btn float-right bg-white mr-2")
             .text("More Details")
+            .attr("data-toggle","modal")
+            .attr("data-target","#exampleModalCenter")
   
   
           $li.append($chkbutton);
@@ -225,16 +227,16 @@ $(document).ready(function() {
 
   $(document).ready(function() {
     var item
-    var outputList = document.getElementById("list-output");
+    var outputList = document.getElementById("books-output");
     var bookUrl = "https://www.googleapis.com/books/v1/volumes?q="
     var placeHldr = '<img src="https://via.placeholder.com/150">'
     var searchData;
 
-    $("#search").click(function() {
+    $("#searchBtn").click(function() {
       event.preventDefault();
         outputList.innerHTML = "";
         document.body.style.backgroundImage = "url('')";
-        searchData = $("#search-box").val();
+        searchData = $("#book_search").val();
 
         if(searchData === "" || searchData === null) {
             displayError();
@@ -259,7 +261,7 @@ $(document).ready(function() {
                 }
             });
         }
-        $("#search-box").val("");
+        $("#book_search").val("");
     });
 
     function displayResults(response) {
@@ -291,10 +293,18 @@ $(document).ready(function() {
     }
     function formatOutput(bookImg, title, author, publisher, bookLink, bookIsbn) {
         var viewUrl = 'book.html?isbn='+bookIsbn;
-        var htmlCard = `<div class="col-lg-6">
-                            <div class="card" style="">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4">
+        var htmlCard = ` <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">${title}</h5>
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                         </button>
+          
+                       </div>
+                             <div class="modal-body">
+
                                         <img src="${bookImg}" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8">
@@ -305,16 +315,46 @@ $(document).ready(function() {
                                             <a target="_blank" href="${viewUrl}" class="btn btn-dark">Read Book</a>
                                         </div>
                                     </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                                 </div>
                             </div>
                         </div>`
-        return htmlCard;                                      
+        return htmlCard;       
+        
+        
+       
+  
+    
+     
+   
+      
+     
     }
 
   
 });
 
 // End of preview code 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Beginning of book code
@@ -334,3 +374,5 @@ function initialize() {
 google.books.setOnLoadCallback(initialize);
 
 // End of book code
+
+// Modal Pulling Book Review Information from Google Book API
