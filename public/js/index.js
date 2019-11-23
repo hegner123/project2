@@ -72,10 +72,11 @@ $(document).ready(function() {
 
   // Getting references to our form and inputs
   var loginForm = $("#login");
+  var loginBtn = $("#login-btn")
   var loginEmail = $("#login-email");
   var loginPassword = $("#login-password");
   // When the form is submitted, we validate there's an email and password entered
-  loginForm.on("submit", function(event) {
+  loginBtn.on("click", function(event) {
     event.preventDefault();
     var userData = {
       email: loginEmail.val().trim(),
@@ -110,11 +111,11 @@ $(document).ready(function() {
     var search = function (event) {
       event.preventDefault();
       var searchInput = $("#book_search").val().trim();
-  
+
       // take user input and call function to get query result
       getSearch(searchInput);
     }
-  
+
     // function to get database result
     function getSearch(param1) {
       var id = param1;
@@ -123,7 +124,7 @@ $(document).ready(function() {
         method: "GET",
         url: "/search/" + id
       }).then(function (data) {
-        
+
         //var x = data.map(v => v.title + " by " + v.authors);
         //console.log(x[0]);
 
