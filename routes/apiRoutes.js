@@ -77,6 +77,24 @@ app.get("/search/:id", function (req, res) {
   });
 });
 
+  // update qty in book table
+  app.put("/updateQty/:book_id", function(req, res) {
+    
+    db.Book.update({
+      qty_on_hand: req.body.new_qty_on_hand,
+      qty_checked_out: req.body.new_qty_checkedout
+    }, {
+      where: {
+        book_id: req.body.book_id
+      }
+    }).then(function(dbBook) {
+      res.json(dbBook);
+      console.log(dbBook);
+    }).catch(function(err) {
+      res.json(err);
+    });
+  });
+
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
     db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
