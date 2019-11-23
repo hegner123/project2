@@ -3,41 +3,57 @@
     <div class="row">
       <div class="col-md-9">
         <h1 class="display-3 font-weight-bold">Login</h1>
-        <h5 class="font-weight-light">Welcome back!  Please login to your account in order to continue with your checkout process.  If you forgot your login username or password, please contact customer support and one of our librarians will be able to support you.</p>
+        <h5 class="font-weight-light">Welcome back! Please login to your account in order to continue with your checkout
+          process. If you forgot your login username or password, please contact customer support and one of our
+          librarians will be able to support you.</p>
       </div>
       <div class="col-md-3 text-center">
-        <img src="./images/stacked_books.jpg" alt="Stacked Books" class="img-thumbnail border-white">
+        <img src="./images/stacked_books.jpg" alt="Stacked Books" >
       </div>
     </div>
   </div>
-</div> 
+</div>
 </div>
 </div>
 
 <!-- Form -->
-<div class="row bg-secondary">
-    <div class="col-md-6">
-        <img src="/images/bookshelf3.jpg" class="img-fluid" alt="The Road Less Traveled">
-    </div>
-    <div class="col-md-5 border-dark ml-4">
-        <div class="row">
-            <div class="form-group col-md-12 text-center mt-5">
-                <h3>Please Enter Your Email and Password Below</h3>
-            </div>
+<div class="container">
+
+
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <div class="row">
+        <div class="form-group col-md-12 text-center mt-5">
+          <h3>Please Enter Your Email and Password Below</h3>
         </div>
-            <form id="login" action="auth" method="POST">
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="login-email">Email</label>
-                  <input type="email" class="form-control" id="login-email" placeholder="Email">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="login-password">Password</label>
-                  <input type="password" class="form-control" id="login-password" placeholder="Password">
-                  <p id="failed-login" style="display:none">Incorrect Password</p>
-                </div>
-              </div>
-             <button ="button" class="btn btn-primary btn-lg btn-block" id="login-btn" >Login </button>
-            </form>
+      </div>
+      <form id="login">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="login-email">Email</label>
+            <input type="email" class="form-control" id="login-email" placeholder="Email">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="login-password">Password</label>
+            <input type="password" class="form-control" id="login-password" placeholder="Password">
+            <p id="failed-login" style="display:none">Incorrect Password</p>
+          </div>
         </div>
+        <button="submit" class="btn btn-primary btn-lg btn-block" id="login-btn">Login </button>
+      </form>
     </div>
+  </div>
+</div>
+
+
+<div class="container-fluid fixed-bottom p-0">
+  <div class="row">
+    <div class="col-12">
+ <div class="bg-dark">
+      <ul class="nav justify-content-center bg-dark pt-3 pb-2">
+        <p class="text-white">The Breakfast Club - Copyright 2019 ©</p>
+      </ul>
+    </div>
+    </div>
+  </div>
+</div>
