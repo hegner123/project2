@@ -122,20 +122,30 @@
 <div class="jumbotron jumbotron-fluid bg-secondary mb-0">
   <div class="container text-dark">
     <h1 class="display-3 font-weight-bold pb-5 text-white">Search Book Inventory</h1>
-      <div class="row">
-        <div class="col-sm-4">
-          <form>
-            <div class="form-group text-white">
-              <label for="exampleInputEmail1">Search Book Titles For Availability</label>
-              <input type="search" class="form-control" id="book_search" aria-describedby="searchHelp" placeholder="Enter Book Title">
-            </div>
-            <button type="submit" class="btn btn-dark btn-block" id="searchBtn">Submit</button>
-          </form>
-        </div>
-        <div class="col-sm-7 border border-white mt-2 ml-5">
-          <h2 class="text-center text-white mt-2">Would you like to check-out?</h2>
-        </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <form>
+          <div class="form-group text-white">
+            <label for="exampleInputEmail1">Search Book Titles For Availability</label>
+            <input type="search" class="form-control" id="book_search" aria-describedby="searchHelp"
+              placeholder="Enter Book Title">
+          </div>
+          <button type="submit" class="btn btn-dark btn-block" id="searchBtn">Submit</button>
+        </form>
       </div>
+      <div class="col-sm-7 border border-white mt-2 ml-5" id="list">
+        <h2 class="text-center text-white mt-2">Would you like to check-out?</h2>
+        <ul id="result-list" class="list-group">
+          {{#each bookList}}
+          <li data-id="{{this.book_id}}" class="list-group-item">
+            <a href="example/{{this.book_id}}">{{this.title}}</a>
+            <button class="btn  float-right chkoutBtn" id= "{{this.book_id}}" value ="{{this.title}}">Checkout</button>
+            <button class="btn  float-right ">More Details</button>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
 
