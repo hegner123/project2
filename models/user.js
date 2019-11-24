@@ -53,8 +53,11 @@ module.exports = function(sequelize, DataTypes) {
   User.associate = function(models) {
     // Associating Author with Posts
     // When an Author is deleted, also delete any associated Posts
-    User.hasMany(models.Checkout, {
-      onDelete: "cascade"
+    User.belongsToMany(models.Book, {
+      through: "Checkout",
+      as: "User",
+      foreignKey: "userId",
+      otherKey: "bookId"
     });
   };
 

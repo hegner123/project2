@@ -9,7 +9,6 @@ body {
   line-height: 2.5;
 }
 
-
 .main{
   margin-top: -50px;
 }
@@ -26,10 +25,11 @@ body {
 }
 .footer{
   margin-bottom: -50px;
-} 
+}
 .card{
   margin-bottom: 60px;
 }
+
 form.signup,
 form.login {
   margin-top: 50px;
@@ -38,4 +38,23 @@ form.login {
 .profile-info-display {
   text-decoration: none;
   list-style: none;
+}
+
+.books-img{
+  width:50px;
+}
+.cFooter{
+  margin-top: 50px;
+}
+
+.dFooter{
+  margin-top: 100px;
+}
+
+.cAccount{
+  padding-right: 15px;
+}
+
+.books-img{
+  width:5rem;
 }

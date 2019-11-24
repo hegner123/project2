@@ -36,13 +36,14 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
 
-    // Book.associate = function(models) {
-    //     // Associating Author with Posts
-    //     // When an Author is deleted, also delete any associated Posts
-    //     Book.hasMany(models.Checkout, {
-    //       onDelete: "cascade"
-    //     });
-    //   };
+    Book.associate = function(models) {
+        Book.belongsToMany(models.User, {
+            through: "Checkout",
+            as: "Book",
+            foreignKey: "bookId",
+            otherKey: "userId"
+          });
+      };
 
     return Book;
 }

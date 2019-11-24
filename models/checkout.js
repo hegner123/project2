@@ -8,16 +8,39 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
         autoIncrement: true
       },
-      checkout_date: {
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      bookId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      checkout_on: {
           type: DataTypes.DATE
       },
       return_by_date: {
         type: DataTypes.DATE
       },
-      return_date: {
+      return_on: {
         type: DataTypes.DATE
       }
     });
 
+    // Checkout.associate = function(models) {
+    //   // We're saying that a Post should belong to an Author
+    //   // A Post can't be created without an Author due to the foreign key constraint
+    //   Checkout.belongsTo(models.User, {
+    //     foreignKey: {
+    //       allowNull: false
+    //     }
+    //   });
+    //   Checkout.hasOne(models.Book, {
+    //     foreignKey: {
+    //       allowNull: false
+    //     }
+    //   });
+    // };
+
     return Checkout;
-  };
+};
