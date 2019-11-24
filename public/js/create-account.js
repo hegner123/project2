@@ -56,15 +56,19 @@ $(document).ready(function(){
         state: state,
         zip: zip
       }).then(function(data) {
-        window.location.href = '/';
-        // If there's an error, handle it by throwing up a boostrap alert
+        if (data ==="/login"){
+          window.location.href = data;
+        } else {
+          var errorData = data.errors[0].message;
+          $("#error-area").text(errorData);
+          $("#error-area").css({"text-transform": "capitalize"}
+          )}
       }).catch(handleLoginErr);
     }
 
     function handleLoginErr(err) {
-      $("#banner").val("");
-      $("#banner").text(err.responseJSON);
-      $("#banner").fadeIn(500);
+      console.log(err)
+
     }
 
 })

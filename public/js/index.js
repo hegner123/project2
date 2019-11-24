@@ -1,5 +1,3 @@
-
-
 $(document).ready(function() {
 
   // This file just does a GET request to figure out which user is logged in
@@ -32,18 +30,17 @@ $(document).ready(function() {
 
         // output the results to the index.handlebar page
         var $bookList = data.map(function (book) {
-          
           var $a = $("<a>")
             .text(book.title + " by " + book.authors);
           //.attr("href", "/example/" + example.id);
-  
+
           var $li = $("<li>")
             .attr({
               class: "list-group-item bg-secondary",
               "data-id": book.book_id
             })
             .append($a);
-  
+
           var $chkbutton = $("<button>")
             .addClass("btn float-right chkoutBtn bg-white")
             .text("Checkout")
@@ -56,34 +53,34 @@ $(document).ready(function() {
             .text("More Details")
             .attr("data-toggle","modal")
             .attr("data-target","#exampleModalCenter")
-  
-  
+
+
           $li.append($chkbutton);
           $li.append($detailbutton);
-  
+
           return $li;
         });
 
         $("#result-list").empty();
         $("#result-list").append($bookList);
-  
+
         // if there's no match found in database, alert the user
         if($bookList.length == 0) {
           $("#result-list").append("No match found");
         }
-        
-  
+
+
       });
     }
-  
+
     var checkOut = function() {
       console.log("btn works");
       var btnId = $(this).attr("id");
       var btnValue = $(this).attr("value");
-      
+
       console.log("data id: " + btnId);
       console.log("btn value: " + btnValue);
-  
+
       for(var i=0; i< searchResult.length; i++) {
         if(btnId == searchResult[i].book_id && searchResult[i].qty_on_hand>0) {
           console.log("enough in stock");
@@ -112,7 +109,7 @@ $(document).ready(function() {
 
     // search button click
     $("#searchBtn").on("click", search);
-   
+
     // checkout button click
     $("#result-list").on("click", ".chkoutBtn", checkOut);
 
@@ -223,22 +220,22 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </div>`
-        return htmlCard;       
-        
-        
-       
-  
-    
-     
-   
-      
-     
+        return htmlCard;
+
+
+
+
+
+
+
+
+
     }
 
-  
+
 });
 
-// End of preview code 
+// End of preview code
 
 
 

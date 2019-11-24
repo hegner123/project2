@@ -15,26 +15,7 @@ app.post("/api/login", passport.authenticate("local"), function(req, res) {
     res.json("/profile");
 });
 
-app.post("/api/password", function(req, res) {
-  if (req.user.password === req.body.password){
-    console.log('pass');
-  } else {
-    console.log('fail')
-  }
-  
-});
 
-app.delete("/api/delete-profile/:email", function(req, res) {
-  // We just have to specify which todo we want to destroy with "where"
-  db.User.destroy({
-    where: {
-      email: req.params.email
-    }
-  }).then(function(dbUser) {
-    res.json(dbUser);
-  });
-
-});
 
 
 
@@ -51,10 +32,11 @@ app.post("/api/signup", function(req, res) {
       zip: req.body.zip
     }).then(function() {
       console.log("redirect");
-      res.redirect(307, "/profile");
+      res.json("/login");
     }).catch(function(err) {
       console.log(err);
-      res.redirect("/profile")
+      res.json(err);
+
     });
 });
 
@@ -123,10 +105,14 @@ app.get("/search/:id", function (req, res) {
     });
   });
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
+  app.delete("/api/user/delete/:email", function(req, res) {
+    // We just have to specify which todo we want to destroy with "where"
+    db.User.destroy({
+      where: {
+        email: req.params.email
+      }
+    }).then(function(dbUser) {
+      res.json("/");
     });
   });
 }
