@@ -15,6 +15,10 @@ app.post("/api/login", passport.authenticate("local"), function(req, res) {
     res.json("/profile");
 });
 
+
+
+
+
 app.post("/api/signup", function(req, res) {
     console.log(req.body);
     db.User.create({
@@ -28,28 +32,35 @@ app.post("/api/signup", function(req, res) {
       zip: req.body.zip
     }).then(function() {
       console.log("redirect");
-      res.redirect(307, "/profile");
+      res.json("/login");
     }).catch(function(err) {
       console.log(err);
-      res.redirect("/profile")
+      res.json(err);
+
     });
 });
 
-app.get("/api/user", function(req, res) {
-  if (!req.user) {
+
+  app.get("/api/user", function(req,res){
+    if (!req.user) {
     // The user is not logged in, send back an empty object
-    console.log('fail')
     res.json({});
   }
   else {
-    // Otherwise send back the user's email and id
-    // Sending back a password, even a hashed password, isn't a good idea
-    console.log('pass')
+var user = req.user
     res.json({
-      email: req.user.email,
+      email: user.email,
+      name: user.firstName + " " + user.lastName,
+      address: user.address + " " + user.city + " " + user.state + " " + user.zip
     });
-  }
-});
+  }});
+
+
+
+
+
+
+
 
 app.get("/logout", function(req, res) {
   req.logout();
@@ -78,7 +89,7 @@ app.get("/search/:id", function (req, res) {
 
   // update qty in book table
   app.put("/updateQty/:book_id", function(req, res) {
-    
+
     db.Book.update({
       qty_on_hand: req.body.new_qty_on_hand,
       qty_checked_out: req.body.new_qty_checkedout
@@ -94,10 +105,14 @@ app.get("/search/:id", function (req, res) {
     });
   });
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
+  app.delete("/api/user/delete/:email", function(req, res) {
+    // We just have to specify which todo we want to destroy with "where"
+    db.User.destroy({
+      where: {
+        email: req.params.email
+      }
+    }).then(function(dbUser) {
+      res.json("/");
     });
   });
 }
