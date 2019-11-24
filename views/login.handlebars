@@ -1,4 +1,4 @@
-<div class="jumbotron jumbotron-fluid bg-success text-white mb-0">
+<div class="jumbotron jumbotron-fluid bg-success text-white p-4 mb-0">
   <div class="container">
     <div class="row">
       <div class="col-md-9">
@@ -8,7 +8,7 @@
           librarians will be able to support you.</p>
       </div>
       <div class="col-md-3 text-center">
-        <img src="./images/stacked_books.jpg" alt="Stacked Books" >
+        <img src="./images/stacked_books1.jpg" alt="Stacked Books" >
       </div>
     </div>
   </div>
@@ -35,7 +35,9 @@
           <div class="form-group col-md-6">
             <label for="login-password">Password</label>
             <input type="password" class="form-control" id="login-password" placeholder="Password">
-            <p id="failed-login" style="display:none">Incorrect Password</p>
+              <div class="alert mb-0" role="alert">
+                <p id="failed-login" class="text-danger" style="display:none">Incorrect Password</p>
+              </div>
           </div>
         </div>
         <button="submit" class="btn btn-dark btn-lg btn-block" id="login-btn">Login </button>
