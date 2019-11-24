@@ -66,7 +66,7 @@ $(document).ready(function () {
           .addClass("btn float-right bg-white mr-2 detailsBtn")
           .text("More Details")
           .attr("data-toggle", "modal")
-          .attr("data-target", "#exampleModalCenter")
+          .attr("data-target", "#more-details-modal")
           .attr({
             id: book.title
           });
@@ -80,6 +80,7 @@ $(document).ready(function () {
 
       $("#result-list").empty();
       $("#result-list").append($bookList);
+      $(".detailsBtn").on("click", bookDetailsApi);
 
       // if there's no match found in database, alert the user
       if ($bookList.length == 0) {
@@ -88,7 +89,12 @@ $(document).ready(function () {
     });
   }
 
-  
+  //All BUTTON CLICKS
+
+  // search button click
+  $("#searchBtn").on("click", search);
+
+
 
   var bookDetailsApi = function () {
     event.preventDefault();
@@ -106,14 +112,14 @@ $(document).ready(function () {
         dataType: "json",
         success: function (response) {
           console.log(response)
-          if (response.totalItems === 0) {
-            alert("This title is not in our library!");
-          }
-          else {
-            $("title").animate({ 'margin-top': '5px' }, 1000);
-            $(".book-list").css("visibility", "visible");
             displayResults(response);
-          }
+            var invisButton =  $("<button>")
+          invisButton.attr("data-toggle", "modal");
+          invisButton.attr("data-target", "#more-details-modal");
+          invisButton.css('display', 'none');
+          invisButton.appendTo("#books-output")
+          invisButton.click();
+
         },
         error: function () {
           alert("Something went wrong! <br>" + "Try again!");
@@ -123,9 +129,9 @@ $(document).ready(function () {
 
 
   };
+
   function displayResults(response) {
-    for (var i = 0; i < response.items.length; i++) {
-      item = response.items[i];
+      item = response.items[0];
       title1 = item.volumeInfo.title;
       author1 = item.volumeInfo.authors;
       publisher1 = item.volumeInfo.publisher;
@@ -133,22 +139,17 @@ $(document).ready(function () {
       bookIsbn1 = item.volumeInfo.industryIdentifiers[1].identifier
       bookImg1 = (item.volumeInfo.imageLinks) ? item.volumeInfo.imageLinks.thumbnail : placeHldr;
 
- 
+      outputList.innerHTML += `<div id="modal-show">` +
+      formatOutput(bookImg1, title1, author1, publisher1, bookLink1, bookIsbn1) + 
+      `</div>`
 
-        formatOutput(bookImg1, title1, author1, publisher1, bookLink1, bookIsbn1);
-
-
-
-      console.log(outputList);
-
-    }
-    function formatOutput(bookImg, title, author, publisher, description,  bookLink, bookIsbn) {
+      function formatOutput(bookImg, title, author, publisher, description,  bookLink, bookIsbn) {
         var viewUrl = 'book.html?isbn='+bookIsbn;
-        var htmlCard = `<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        var htmlCard = `<div class="modal fade" id="more-details-modal" tabindex="-1" role="dialog" aria-labelledby="more-details-model" aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                               <div class="modal-header bg-success">
-                                <h3 class="modal-title text-white" id="exampleModalCenterTitle">More Details</h3>
+                                <h3 class="modal-title text-white" id="more-details-modal-Title">More Details</h3>
                               </div>
                               <div class="modal-body">
                                 <div class="row">
@@ -177,18 +178,13 @@ $(document).ready(function () {
                               </div>
                             </div>
                           </div>`
-                             
         return htmlCard;
 
-    }
-
+      }
 
 };
 
-// End of preview code
 
-
-  
 
   var checkOut = function () {
     console.log("btn works");
@@ -245,7 +241,6 @@ $(document).ready(function () {
 
 
   function insertCheckout(info) {
-    console.log("ghjfkjdhfdkgljkh;");
     $.post("/api/checkout", info, refreshCheckoutSection);
   };
 
@@ -254,25 +249,9 @@ $(document).ready(function () {
     $checkoutArray.push(btnValue + " due by " + formatDate);
     console.log("arrray: " + $checkoutArray);
 
-    
     $("#checkout-list").append($checkoutArray);
 
   };
-
- //All BUTTON CLICKS
-
-  // search button click
-  $("#searchBtn").on("click", search);
-
   // checkout button click
   $("#result-list").on("click", ".chkoutBtn", checkOut);
-
-  // checkout button click
-  //$("#result-list").on("click", ".chkoutBtn", checkOut);
-  // $(".chkoutBtn").on("click", checkOut);
-
-  // book details button click from search results
-  $("#result-list").on("click", ".detailsBtn", bookDetailsApi);
- 
-
 });
