@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 //google.books.setOnLoadCallback(initialize);
 $(document).ready(function () {
@@ -115,6 +116,9 @@ $(document).ready(function () {
       $("#failed-login").show();
     });
   }
+=======
+$(document).ready(function() {
+>>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
 
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
@@ -124,6 +128,7 @@ $(document).ready(function () {
     event.preventDefault();
     var searchInput = $("#book_search").val().trim();
 
+<<<<<<< HEAD
     // take user input and call function to get query result
     getSearch(searchInput);
   }
@@ -175,6 +180,92 @@ $(document).ready(function () {
 
         return $li;
       });
+=======
+    // function to get database result
+    function getSearch(param1) {
+      var id = param1;
+      console.log("id: " + param1);
+      $.ajax({
+        method: "GET",
+        url: "/search/" + id
+      }).then(function (data) {
+
+        //var x = data.map(v => v.title + " by " + v.authors);
+        //console.log(x[0]);
+
+        // save the data to a variable
+        searchResult=data;
+        console.log(searchResult)
+
+        // output the results to the index.handlebar page
+        var $bookList = data.map(function (book) {
+          var $a = $("<a>")
+            .text(book.title + " by " + book.authors);
+          //.attr("href", "/example/" + example.id);
+
+          var $li = $("<li>")
+            .attr({
+              class: "list-group-item bg-secondary",
+              "data-id": book.book_id
+            })
+            .append($a);
+
+          var $chkbutton = $("<button>")
+            .addClass("btn float-right chkoutBtn bg-white")
+            .text("Checkout")
+            .attr({
+              value: book.title,
+              id: book.book_id
+            });
+          var $detailbutton = $("<button>")
+            .addClass("btn float-right bg-white mr-2")
+            .text("More Details")
+            .attr("data-toggle","modal")
+            .attr("data-target","#exampleModalCenter")
+
+
+          $li.append($chkbutton);
+          $li.append($detailbutton);
+
+          return $li;
+        });
+
+        $("#result-list").empty();
+        $("#result-list").append($bookList);
+
+        // if there's no match found in database, alert the user
+        if($bookList.length == 0) {
+          $("#result-list").append("No match found");
+        }
+
+
+      });
+    }
+
+    var checkOut = function() {
+      console.log("btn works");
+      var btnId = $(this).attr("id");
+      var btnValue = $(this).attr("value");
+
+      console.log("data id: " + btnId);
+      console.log("btn value: " + btnValue);
+
+      for(var i=0; i< searchResult.length; i++) {
+        if(btnId == searchResult[i].book_id && searchResult[i].qty_on_hand>0) {
+          console.log("enough in stock");
+          var qty = {
+            new_qty_on_hand: (searchResult[i].qty_on_hand)-1,
+            new_qty_checkedout: (searchResult[i].qty_checked_out)+1,
+            book_id: btnId
+          }
+          updateQty(qty);
+        }
+        else{
+          //Pop up message with not available right now
+        }
+      }
+    };
+>>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
 
       $("#result-list").empty();
       $("#result-list").append($bookList);
@@ -184,6 +275,14 @@ $(document).ready(function () {
         $("#result-list").append("No match found");
       }
 
+<<<<<<< HEAD
+=======
+    // search button click
+    $("#searchBtn").on("click", search);
+
+    // checkout button click
+    $("#result-list").on("click", ".chkoutBtn", checkOut);
+>>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
 
     });
   }
@@ -217,16 +316,108 @@ $(document).ready(function () {
 
         updateQty(qty);
 
+<<<<<<< HEAD
         insertCheckout(info);
+=======
+  $(document).ready(function() {
+    var item
+    var outputList = document.getElementById("books-output");
+    var bookUrl = "https://www.googleapis.com/books/v1/volumes?q="
+    var placeHldr = '<img src="https://via.placeholder.com/150">'
+    var searchData;
+
+    $("#searchBtn").click(function() {
+      event.preventDefault();
+        outputList.innerHTML = "";
+        document.body.style.backgroundImage = "url('')";
+        searchData = $("#book_search").val();
+
+        if(searchData === "" || searchData === null) {
+            displayError();
+        }
+        else {
+            $.ajax({
+                url: bookUrl + searchData,
+                dataType: "json",
+                success: function(response) {
+                    console.log(response)
+                    if(response.totalItems === 0) {
+                        alert("This title is not in our library!");
+                    }
+                    else {
+                        $("title").animate({'margin-top': '5px'}, 1000);
+                        $(".book-list").css("visibility", "visible");
+                        displayResults(response);
+                    }
+                },
+                error: function() {
+                    alert("Something went wrong! <br>"+"Try again!");
+                }
+            });
+        }
+        $("#book_search").val("");
+    });
+>>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
 
       }
       else {
         //Pop up mes
 
+<<<<<<< HEAD
       }
+=======
+        }
+    }
+    function formatOutput(bookImg, title, author, publisher, bookLink, bookIsbn) {
+        var viewUrl = 'book.html?isbn='+bookIsbn;
+        var htmlCard = ` <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">${title}</h5>
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                         </button>
+
+                       </div>
+                             <div class="modal-body">
+
+                                        <img src="${bookImg}" class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body bg-secondary">
+                                            <h5 class="text-white card-title">${title}</h5>
+                                            <p class="text-white card-text">Author: ${author}</p>
+                                            <p class="text-white card-text">Publisher: ${publisher}</p>
+                                            <a target="_blank" href="${viewUrl}" class="btn btn-dark">Read Book</a>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                                </div>
+                            </div>
+                        </div>`
+        return htmlCard;
+
+
+
+
+
+
+
+
+
+>>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
     }
   };
 
+<<<<<<< HEAD
   function updateQty(qty) {
     console.log("under update func: " + qty.book_id);
     $.ajax({
@@ -236,6 +427,25 @@ $(document).ready(function () {
 
     }).then(console.log("qty update successful"));
   }
+=======
+
+});
+
+// End of preview code
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
 
   function insertCheckout(info) {
     $.post("/api/checkout", info, refreshCheckoutSection);
@@ -274,6 +484,7 @@ $(document).ready(function () {
   // $(".chkoutBtn").on("click", checkOut);
 
 
+<<<<<<< HEAD
 });
 
 
@@ -388,5 +599,10 @@ $(document).ready(function () {
 // }
 
 // google.books.setOnLoadCallback(initialize);
+=======
+>>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
+
 
 // End of book code
+
+// Modal Pulling Book Review Information from Google Book API

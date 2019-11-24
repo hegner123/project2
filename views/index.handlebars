@@ -39,6 +39,42 @@
   </div>
 </div>
 
+<!-- Search Inventory -->
+<div class="jumbotron jumbotron-fluid bg-secondary mb-0">
+  <div class="container text-dark">
+    <h1 class="display-3 font-weight-bold pb-5 text-white">Search Book Inventory</h1>
+    <div class="row">
+      <div class="col-sm-4">
+        <form>
+          <div class="form-group text-white">
+            <label for="exampleInputEmail1">Search Book Titles For Availability</label>
+            <input type="search" class="form-control" id="book_search" aria-describedby="searchHelp"
+              placeholder="Enter Book Title">
+          </div>
+          <button type="submit" class="btn btn-dark btn-block" id="searchBtn">Submit</button>
+        </form>
+      </div>
+      <div class="col-sm-7 border border-white mt-2 ml-5" id="list">
+        <h2 class="text-center text-white mt-2">Would you like to check-out?</h2>
+        <ul id="result-list" class="list-group text-white border no-border mb-2">
+          {{#each bookList}}
+          <li data-id="{{this.book_id}}" class="list-group-item">
+            <a href="example/{{this.book_id}}">{{this.title}}</a>
+            <button class="btn  float-right chkoutBtn mr-2" id= "{{this.book_id}}" value ="{{this.title}}">Checkout</button>
+            <button class="btn  float-right">More Details</button>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="books-output">
+  
+</div>
+
 <!-- Book Reviews -->
 <div class="jumbotron jumbotron-fluid bg-light text-dark mb-0">
   <div class="container text-dark">
@@ -129,6 +165,7 @@
 </div>
 
 
+<<<<<<< HEAD
 <!-- Search Inventory -->
 <div class="jumbotron jumbotron-fluid bg-secondary mb-0">
   <div class="container text-dark">
@@ -159,10 +196,14 @@
     </div>
   </div>
 </div>
+=======
+
+>>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
 
 <!-- Check-Out Inventory -->
-<div class="jumbotron jumbotron-fluid bg-light mb-0">
+<div class="jumbotron jumbotron-fluid bg-secondary mb-0">
   <div class="container text-dark">
+<<<<<<< HEAD
     <h1 class="display-3 font-weight-bold pb-5 text-dark">Checked-Out Books</h1>
     <div class="row">
       <div class="col-sm-4">
@@ -181,6 +222,17 @@
           </li></br>
           {{/each}}
         </ul>
+=======
+    <h1 class="display-3 font-weight-bold pb-5 text-white">Checked-Out Books</h1>
+      <div class="row">
+        <div class="col-sm-4">
+          <h4 class="text-white">Return Policy</h4>
+          <p class="text-white">We hope you are enjoying your book!  In order others to enjoy books like you, we need to make sure the books checked-out are returned in a timely manner.  Please make sure you return the book within 30 days of check-out or you will be fined $5.00 every week late until the overdue book is returned.  Thank you for your business!</p>
+        </div>
+        <div class="col-sm-7 border border-white mt-2 ml-5">
+          <h2 class="text-center text-white mt-2">These books are checked-out, enjoy!</h2>
+        </div>
+>>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
       </div>
     </div>
   </div>

@@ -15,7 +15,15 @@ module.exports = function (app) {
     res.json("/profile");
   });
 
+<<<<<<< HEAD
   app.post("/api/signup", function (req, res) {
+=======
+
+
+
+
+app.post("/api/signup", function(req, res) {
+>>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
     console.log(req.body);
     db.User.create({
       email: req.body.email,
@@ -28,13 +36,20 @@ module.exports = function (app) {
       zip: req.body.zip
     }).then(function () {
       console.log("redirect");
+<<<<<<< HEAD
       res.redirect(307, "/profile");
     }).catch(function (err) {
+=======
+      res.json("/login");
+    }).catch(function(err) {
+>>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
       console.log(err);
-      res.redirect("/profile")
+      res.json(err);
+
     });
   });
 
+<<<<<<< HEAD
   app.get("/api/user", function (req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
@@ -50,6 +65,29 @@ module.exports = function (app) {
       });
     }
   });
+=======
+
+  app.get("/api/user", function(req,res){
+    if (!req.user) {
+    // The user is not logged in, send back an empty object
+    res.json({});
+  }
+  else {
+var user = req.user
+    res.json({
+      email: user.email,
+      name: user.firstName + " " + user.lastName,
+      address: user.address + " " + user.city + " " + user.state + " " + user.zip
+    });
+  }});
+
+
+
+
+
+
+
+>>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
 
   app.get("/logout", function (req, res) {
     req.logout();
@@ -77,7 +115,11 @@ module.exports = function (app) {
   });
 
   // update qty in book table
+<<<<<<< HEAD
   app.put("/updateQty/:book_id", function (req, res) {
+=======
+  app.put("/updateQty/:book_id", function(req, res) {
+>>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
 
     db.Book.update({
       qty_on_hand: req.body.new_qty_on_hand,
@@ -109,10 +151,21 @@ module.exports = function (app) {
     });
   });
 
+<<<<<<< HEAD
   // Delete an example by id
   app.delete("/api/examples/:id", function (req, res) {
     db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
       res.json(dbExample);
+=======
+  app.delete("/api/user/delete/:email", function(req, res) {
+    // We just have to specify which todo we want to destroy with "where"
+    db.User.destroy({
+      where: {
+        email: req.params.email
+      }
+    }).then(function(dbUser) {
+      res.json("/");
+>>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
     });
   });
 }
