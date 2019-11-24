@@ -8,7 +8,7 @@ var passport = require("./config/passport");
 var PORT = process.env.PORT || 8080;
 var db = require("./models");
 var app = express();
-
+var moment = require('moment');
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -45,5 +45,6 @@ db.sequelize.sync(syncOptions).then(function() {
     console.log("Listening on " + PORT);
   });
 });
+
 
 module.exports = app;
