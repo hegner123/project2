@@ -21,7 +21,7 @@ The purpose of this project is to have a database for a library that allows a cu
 2. Functions:
 The main function of the application are to create an account, be able to track books being checked in and out, and to be able to preview various books online via google book api.
 
-3. Technologie used for this project:
+3. Technologies used for this project:
 We used photoshop, mysql database, node express, login passport, google book api, sequelize, bootstrap.
 
 4. Who maintains and contributes to the project:
