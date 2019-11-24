@@ -27,7 +27,6 @@ $(document).ready(function () {
     event.preventDefault();
     var searchInput = $("#book_search").val().trim();
 
-<<<<<<< HEAD
     getSearch(searchInput);
   }
 
@@ -89,6 +88,8 @@ $(document).ready(function () {
     });
   }
 
+  
+
   var bookDetailsApi = function () {
     event.preventDefault();
     outputList.innerHTML = "";
@@ -123,7 +124,7 @@ $(document).ready(function () {
 
   };
   function displayResults(response) {
-    for (var i = 0; i < response.items.length; i += 2) {
+    for (var i = 0; i < response.items.length; i++) {
       item = response.items[i];
       title1 = item.volumeInfo.title;
       author1 = item.volumeInfo.authors;
@@ -132,18 +133,11 @@ $(document).ready(function () {
       bookIsbn1 = item.volumeInfo.industryIdentifiers[1].identifier
       bookImg1 = (item.volumeInfo.imageLinks) ? item.volumeInfo.imageLinks.thumbnail : placeHldr;
 
-      item2 = response.items[i + 1];
-      title2 = item2.volumeInfo.title;
-      author2 = item2.volumeInfo.authors;
-      publisher2 = item2.volumeInfo.publisher;
-      bookLink2 = item2.volumeInfo.previewLink;
-      bookIsbn2 = item2.volumeInfo.industryIdentifiers[1].identifier
-      bookImg2 = (item2.volumeInfo.imageLinks) ? item2.volumeInfo.imageLinks.thumbnail : placeHldr;
+ 
 
-      outputList.innerHTML += '<div class="row mt-4">' +
-        formatOutput(bookImg1, title1, author1, publisher1, bookLink1, bookIsbn1) +
-        formatOutput(bookImg2, title2, author2, publisher2, bookLink2, bookIsbn2)
-      '</div>';
+        formatOutput(bookImg1, title1, author1, publisher1, bookLink1, bookIsbn1);
+
+
 
       console.log(outputList);
 
@@ -249,7 +243,7 @@ $(document).ready(function () {
 
   };
 
-  //All BUTTON CLICKS
+ //All BUTTON CLICKS
 
   // search button click
   $("#searchBtn").on("click", search);
@@ -263,9 +257,6 @@ $(document).ready(function () {
 
   // book details button click from search results
   $("#result-list").on("click", ".detailsBtn", bookDetailsApi);
-
+ 
 
 });
-=======
-});
->>>>>>> c25d0912acb005a04ae064356e8629ccf1a4a55a
