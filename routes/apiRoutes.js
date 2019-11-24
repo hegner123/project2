@@ -15,15 +15,7 @@ module.exports = function (app) {
     res.json("/profile");
   });
 
-<<<<<<< HEAD
   app.post("/api/signup", function (req, res) {
-=======
-
-
-
-
-app.post("/api/signup", function(req, res) {
->>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
     console.log(req.body);
     db.User.create({
       email: req.body.email,
@@ -36,58 +28,30 @@ app.post("/api/signup", function(req, res) {
       zip: req.body.zip
     }).then(function () {
       console.log("redirect");
-<<<<<<< HEAD
-      res.redirect(307, "/profile");
-    }).catch(function (err) {
-=======
       res.json("/login");
-    }).catch(function(err) {
->>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
+    }).catch(function (err) {
       console.log(err);
       res.json(err);
 
     });
   });
 
-<<<<<<< HEAD
+
   app.get("/api/user", function (req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
-      console.log('fail')
       res.json({});
     }
     else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
-      console.log('pass')
+      var user = req.user
       res.json({
-        email: req.user.email,
+        email: user.email,
+        name: user.firstName + " " + user.lastName,
+        address: user.address + " " + user.city + " " + user.state + " " + user.zip
       });
     }
   });
-=======
 
-  app.get("/api/user", function(req,res){
-    if (!req.user) {
-    // The user is not logged in, send back an empty object
-    res.json({});
-  }
-  else {
-var user = req.user
-    res.json({
-      email: user.email,
-      name: user.firstName + " " + user.lastName,
-      address: user.address + " " + user.city + " " + user.state + " " + user.zip
-    });
-  }});
-
-
-
-
-
-
-
->>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
 
   app.get("/logout", function (req, res) {
     req.logout();
@@ -108,18 +72,13 @@ var user = req.user
       res.json(dbBook);
       //console.log(dbBook);
     }).catch(function (err) {
-      // Whenever a validation or flag fails, an error is thrown
-      // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+
       res.json(err);
     });
   });
 
   // update qty in book table
-<<<<<<< HEAD
   app.put("/updateQty/:book_id", function (req, res) {
-=======
-  app.put("/updateQty/:book_id", function(req, res) {
->>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
 
     db.Book.update({
       qty_on_hand: req.body.new_qty_on_hand,
@@ -130,7 +89,7 @@ var user = req.user
       }
     }).then(function (dbBook) {
       res.json(dbBook);
-     // console.log(dbBook);
+      // console.log(dbBook);
     }).catch(function (err) {
       res.json(err);
     });
@@ -151,21 +110,14 @@ var user = req.user
     });
   });
 
-<<<<<<< HEAD
-  // Delete an example by id
-  app.delete("/api/examples/:id", function (req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
-      res.json(dbExample);
-=======
-  app.delete("/api/user/delete/:email", function(req, res) {
+  app.delete("/api/user/delete/:email", function (req, res) {
     // We just have to specify which todo we want to destroy with "where"
     db.User.destroy({
       where: {
         email: req.params.email
       }
-    }).then(function(dbUser) {
+    }).then(function (dbUser) {
       res.json("/");
->>>>>>> f66b33f4b6a3b2ec7f477970d9fcd4a80fc2226e
     });
   });
 }
