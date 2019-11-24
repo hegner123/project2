@@ -144,7 +144,7 @@ $(document).ready(function () {
     }
     function formatOutput(bookImg, title, author, publisher, description,  bookLink, bookIsbn) {
         var viewUrl = 'book.html?isbn='+bookIsbn;
-        var htmlCard = `<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        var htmlCard = `<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                               <div class="modal-header bg-success">
@@ -163,7 +163,7 @@ $(document).ready(function () {
                           </div>`
                              
         return htmlCard;
-
+        
     }
 
 
@@ -235,7 +235,9 @@ $(document).ready(function () {
 
   function refreshCheckoutSection() {
     $("#checkout-list").empty();
-    $checkoutArray.push(btnValue + " due by " + formatDate);
+    var checkoutItem = $('<li class="list-group-item>');
+    checkoutItem.text(btnValue + " due by " + formatDate);
+    $checkoutArray.push(checkoutItem);
     console.log("arrray: " + $checkoutArray);
 
     
