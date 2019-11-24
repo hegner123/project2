@@ -150,14 +150,30 @@ $(document).ready(function () {
                               <div class="modal-header bg-success">
                                 <h3 class="modal-title text-white" id="exampleModalCenterTitle">More Details</h3>
                               </div>
-                              <div class="modal-body text-center">
-                                <img src="${bookImg}" class="rounded" alt="Book Image">
-                                <h5 class="text-black card-title text-center">${title}</h5>
-                                <p class="text-black card-text">Author: ${author}</p>
-                                <p class="text-black card-text">Publisher: ${publisher}</p>
-                                <p class="text-black">Description: ${description}</p>
-                                <a target="_blank" href="${viewUrl}" class="btn btn-success pull-right">Read Book</a>
-                                <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Close</
+                              <div class="modal-body">
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <img src="${bookImg}" class="rounded mx-auto d-block" alt="Book Image">
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <h4 class="text-black card-title text-center pt-3">${title}</h4>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <p class="text-black card-text">Author: ${author}</p>
+                                  </div>
+                                </div>
+                                  <p class="text-black card-text">Publisher: ${publisher}</p>
+                                  <p class="text-black">Description: ${description}</p>
+                                <div class="row">
+                                  <div class="col-md-12 text-right">
+                                    <a target="_blank" href="${viewUrl}" class="btn btn-success">Read Book</a>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>`
