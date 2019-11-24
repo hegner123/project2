@@ -39,3 +39,15 @@ form.login {
   text-decoration: none;
   list-style: none;
 }
+
+.cFooter{
+  margin-top: 50px;
+}
+
+.dFooter{
+  margin-top: 50px;
+}
+
+.cAccount{
+  padding-right: 15px;
+}

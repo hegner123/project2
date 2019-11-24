@@ -1,4 +1,4 @@
-<div class="jumbotron jumbotron-fluid bg-success text-white mb-0">
+<div class="jumbotron jumbotron-fluid bg-success text-white p-4 mb-0">
   <div class="container">
     <div class="row">
       <div class="col-md-9">
@@ -8,7 +8,7 @@
           librarians will be able to support you.</p>
       </div>
       <div class="col-md-3 text-center">
-        <img src="./images/stacked_books.jpg" alt="Stacked Books" >
+        <img src="./images/stacked_books1.jpg" alt="Stacked Books" >
       </div>
     </div>
   </div>
@@ -35,26 +35,24 @@
           <div class="form-group col-md-6">
             <label for="login-password">Password</label>
             <input type="password" class="form-control" id="login-password" placeholder="Password">
-            <p id="failed-login" style="display:none">Incorrect Password</p>
+              <div class="alert mb-0" role="alert">
+                <p id="failed-login" class="text-danger" style="display:none">Incorrect Password</p>
+              </div>
           </div>
         </div>
-        <button="submit" class="btn btn-primary btn-lg btn-block" id="login-btn">Login </button>
+        <button="submit" class="btn btn-dark btn-lg btn-block" id="login-btn">Login </button>
       </form>
     </div>
   </div>
 </div>
 
-
-<div class="container-fluid fixed-bottom p-0">
-  <div class="row">
-    <div class="col-12">
- <div class="bg-dark">
-      <ul class="nav justify-content-center bg-dark pt-3 pb-2">
-        <p class="text-white">The Breakfast Club - Copyright 2019 ©</p>
-      </ul>
-    </div>
-    </div>
+<div class="dFooter">
+  <div class="bg-dark">
+    <ul class="nav justify-content-center bg-dark pt-3 pb-2">
+      <p class="text-white">The Breakfast Club - Copyright 2019 ©</p>
+    </ul>
   </div>
 </div>
+
 
 <script src="/js/login.js"></script>

@@ -147,45 +147,37 @@ $(document).ready(function () {
       console.log(outputList);
 
     }
-  }
-  function formatOutput(bookImg, title, author, publisher, bookLink, bookIsbn) {
-    var viewUrl = 'book.html?isbn=' + bookIsbn;
-    var htmlCard = ` <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">${title}</h5>
-                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                         </button>
-
-                       </div>
-                             <div class="modal-body">
-
-                                        <img src="${bookImg}" class="card-img" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body bg-secondary">
-                                            <h5 class="text-white card-title">${title}</h5>
-                                            <p class="text-white card-text">Author: ${author}</p>
-                                            <p class="text-white card-text">Publisher: ${publisher}</p>
-                                            <a target="_blank" href="${viewUrl}" class="btn btn-dark">Read Book</a>
-                                        </div>
-                                    </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    </div>
-                                  </div>
-                                </div>
+    function formatOutput(bookImg, title, author, publisher, description,  bookLink, bookIsbn) {
+        var viewUrl = 'book.html?isbn='+bookIsbn;
+        var htmlCard = `<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header bg-success">
+                                <h3 class="modal-title text-white" id="exampleModalCenterTitle">More Details</h3>
                               </div>
-                                </div>
+                              <div class="modal-body text-center">
+                                <img src="${bookImg}" class="rounded" alt="Book Image">
+                                <h5 class="text-black card-title text-center">${title}</h5>
+                                <p class="text-black card-text">Author: ${author}</p>
+                                <p class="text-black card-text">Publisher: ${publisher}</p>
+                                <p class="text-black">Description: ${description}</p>
+                                <a target="_blank" href="${viewUrl}" class="btn btn-success pull-right">Read Book</a>
+                                <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Close</
+                              </div>
                             </div>
-                        </div>`
-    return htmlCard;
+                          </div>`
+                             
+        return htmlCard;
 
-  }
+    }
+
+
+};
+
+// End of preview code
+
+
+  
 
   var checkOut = function () {
     console.log("btn works");
@@ -214,6 +206,7 @@ $(document).ready(function () {
           return_by_date: formatDate
         };
 
+        console.log(info);
         updateQty(qty);
         insertCheckout(info);
       }
@@ -241,6 +234,7 @@ $(document).ready(function () {
 
 
   function insertCheckout(info) {
+    console.log("ghjfkjdhfdkgljkh;");
     $.post("/api/checkout", info, refreshCheckoutSection);
   };
 
