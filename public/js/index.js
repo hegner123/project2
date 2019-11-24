@@ -293,39 +293,34 @@ $(document).ready(function() {
     }
     function formatOutput(bookImg, title, author, publisher, bookLink, bookIsbn) {
         var viewUrl = 'book.html?isbn='+bookIsbn;
-        var htmlCard = ` <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">${title}</h5>
-                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                         </button>
-          
-                       </div>
-                             <div class="modal-body">
-
-                                        <img src="${bookImg}" class="card-img" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body bg-secondary">
-                                            <h5 class="text-white card-title">${title}</h5>
-                                            <p class="text-white card-text">Author: ${author}</p>
-                                            <p class="text-white card-text">Publisher: ${publisher}</p>
-                                            <a target="_blank" href="${viewUrl}" class="btn btn-dark">Read Book</a>
-                                        </div>
-                                    </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    </div>
-                                  </div>
+        var htmlCard = `<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header bg-success">
+                                <h5 class="modal-title text-white" id="exampleModalCenterTitle">More Details</h5>
+                              </div>
+                              <div class="modal-body text-center">
+                                <img src="${bookImg}" class="img-thumbnail" alt="book cover">
+                              </div>
+                              
+                                <div class="card-body bg-white">
+                                    <h3 class="text-black card-title text-center">${title}</h3>
+                                    <p class="text-black card-text">Author: ${author}</p>
+                                    <p class="text-black card-text">Publisher: ${publisher}</p>  
+                                </div>
+                              
+                                <div class="modal-footer">
+                                  <a target="_blank" href="${viewUrl}" class="btn btn-success">Read Book</a>
+                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 </div>
                               </div>
-                                </div>
+                              
                             </div>
-                        </div>`
+                          </div>
+                        </div>
+                          </div>
+                      </div>
+                  </div>`
         return htmlCard;       
         
         
