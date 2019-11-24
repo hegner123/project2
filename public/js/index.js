@@ -217,7 +217,19 @@ $(document).ready(function() {
                                   </div>
                                 </div>
                               </div>
+
+                                <div class="card-body bg-white">
+                                    <h3 class="text-black card-title text-center">${title}</h3>
+                                    <p class="text-black card-text">Author: ${author}</p>
+                                    <p class="text-black card-text">Publisher: ${publisher}</p>
                                 </div>
+
+                                <div class="modal-footer">
+                                  <a target="_blank" href="${viewUrl}" class="btn btn-success">Read Book</a>
+                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+
                             </div>
                         </div>`
         return htmlCard;
