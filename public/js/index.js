@@ -251,18 +251,6 @@ $(document).ready(function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // Beginning of book code
 
 google.books.load();
