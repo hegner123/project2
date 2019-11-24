@@ -88,7 +88,13 @@ $(document).ready(function () {
     });
   }
 
-  
+  //All BUTTON CLICKS
+
+  // search button click
+  $("#searchBtn").on("click", search);
+
+  // checkout button click
+  $(".detailsBtn").on("click", bookDetailsApi);
 
   var bookDetailsApi = function () {
     event.preventDefault();
@@ -124,8 +130,7 @@ $(document).ready(function () {
 
   };
   function displayResults(response) {
-    for (var i = 0; i < response.items.length; i++) {
-      item = response.items[i];
+      item = response.items[0];
       title1 = item.volumeInfo.title;
       author1 = item.volumeInfo.authors;
       publisher1 = item.volumeInfo.publisher;
@@ -133,15 +138,8 @@ $(document).ready(function () {
       bookIsbn1 = item.volumeInfo.industryIdentifiers[1].identifier
       bookImg1 = (item.volumeInfo.imageLinks) ? item.volumeInfo.imageLinks.thumbnail : placeHldr;
 
- 
+      formatOutput(bookImg1, title1, author1, publisher1, bookLink1, bookIsbn1);
 
-        formatOutput(bookImg1, title1, author1, publisher1, bookLink1, bookIsbn1);
-
-
-
-      console.log(outputList);
-
-    }
     function formatOutput(bookImg, title, author, publisher, description,  bookLink, bookIsbn) {
         var viewUrl = 'book.html?isbn='+bookIsbn;
         var htmlCard = `<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -161,7 +159,6 @@ $(document).ready(function () {
                               </div>
                             </div>
                           </div>`
-                             
         return htmlCard;
 
     }
@@ -243,20 +240,6 @@ $(document).ready(function () {
 
   };
 
- //All BUTTON CLICKS
-
-  // search button click
-  $("#searchBtn").on("click", search);
-
-  // checkout button click
-  $("#result-list").on("click", ".chkoutBtn", checkOut);
-
-  // checkout button click
-  //$("#result-list").on("click", ".chkoutBtn", checkOut);
-  // $(".chkoutBtn").on("click", checkOut);
-
-  // book details button click from search results
-  $("#result-list").on("click", ".detailsBtn", bookDetailsApi);
  
-
+  $("#result-list").on("click", ".chkoutBtn", checkOut);
 });
