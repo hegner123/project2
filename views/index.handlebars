@@ -2,9 +2,10 @@
 <div class="jumbotron jumbotron-fluid bg-success text-white mb-0">
   <div class="container text-white">
     <h1 class="display-3 font-weight-bold">The Breakfast Club</h1>
-    <h5 class="font-weight-light">“If we encounter a man of rare intellect, we should ask him what books he reads.” – Ralph Waldo Emerson</p>
-    <a class="btn btn-dark btn-lg" href="/create-account" role="button">Sign Up</a>
-    <a class="btn btn-dark btn-lg" href="/login" role="button">Login</a>
+    <h5 class="font-weight-light">“If we encounter a man of rare intellect, we should ask him what books he reads.” –
+      Ralph Waldo Emerson</p>
+      <a class="btn btn-dark btn-lg" href="/create-account" role="button">Sign Up</a>
+      <a class="btn btn-dark btn-lg" href="/login" role="button">Login</a>
   </div>
 </div>
 
@@ -60,7 +61,7 @@
           <li data-id="{{this.book_id}}" class="list-group-item">
             <a href="example/{{this.book_id}}">{{this.title}}</a>
             <button class="btn  float-right chkoutBtn mr-2" id= "{{this.book_id}}" value ="{{this.title}}">Checkout</button>
-            <button class="btn  float-right">More Details</button>
+            <button class="btn  float-right detailsBtn" id="{{this.title}}">More Details</button>
           </li>
           {{/each}}
         </ul>
@@ -79,97 +80,114 @@
 <div class="jumbotron jumbotron-fluid bg-light text-dark mb-0">
   <div class="container text-dark">
     <h1 class="display-3 font-weight-bold pb-5">Popular Book Reviews</h1>
-      <div>
-        <div class="row no-gutters pb-5">
-          <div class="col-md-2">
-            <img src="/images/hunger_games.jpg" class="card-img" alt="The Hunger Games">
+    <div>
+      <div class="row no-gutters pb-5">
+        <div class="col-md-2">
+          <img src="/images/hunger_games.jpg" class="card-img" alt="The Hunger Games">
+        </div>
+        <div class="col-md-4">
+          <div class="card-body">
+            <h5 class="card-title">The Hunger Games</h5>
+            <p class="card-text">New York Times bestselling author Suzanne Collins delivers equal parts suspense and
+              philosophy, adventure and romance, in this searing novel set in a future with unsettling parallels to our
+              present.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
-          <div class="col-md-4">
-            <div class="card-body">
-              <h5 class="card-title">The Hunger Games</h5>
-              <p class="card-text">New York Times bestselling author Suzanne Collins delivers equal parts suspense and philosophy, adventure and romance, in this searing novel set in a future with unsettling parallels to our present.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <img src="/images/the_shining.jpg" class="card-img" alt="The Shining">
-          </div>
-          <div class="col-md-4">
-            <div class="card-body">
-              <h5 class="card-title">The Shining</h5>
-              <p class="card-text">Jack Torrance's new job at the Overlook Hotel is the perfect chance for a fresh start. As the off-season caretaker at the atmospheric old hotel, he'll have plenty of time to spend reconnecting with his family and working on his writing.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
+        </div>
+        <div class="col-md-2">
+          <img src="/images/the_shining.jpg" class="card-img" alt="The Shining">
+        </div>
+        <div class="col-md-4">
+          <div class="card-body">
+            <h5 class="card-title">The Shining</h5>
+            <p class="card-text">Jack Torrance's new job at the Overlook Hotel is the perfect chance for a fresh start.
+              As the off-season caretaker at the atmospheric old hotel, he'll have plenty of time to spend reconnecting
+              with his family and working on his writing.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
         </div>
       </div>
-      <div>
-        <div class="row no-gutters pb-5">
-          <div class="col-md-2">
-            <img src="/images/lord_of_the_rings.jpg" class="card-img" alt="Lord of the Rings">
+    </div>
+    <div>
+      <div class="row no-gutters pb-5">
+        <div class="col-md-2">
+          <img src="/images/lord_of_the_rings.jpg" class="card-img" alt="Lord of the Rings">
+        </div>
+        <div class="col-md-4">
+          <div class="card-body">
+            <h5 class="card-title">Lord of the Rings</h5>
+            <p class="card-text">The Lord of the Rings tells of the great quest undertaken by Frodo and the Fellowship
+              of the Ring: Gandalf the Wizard; the hobbits Merry, Pippin, and Sam; Gimli the Dwarf; Legolas the Elf;
+              Boromir of Gondor; and a tall, mysterious stranger called Strider.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
-          <div class="col-md-4">
-            <div class="card-body">
-              <h5 class="card-title">Lord of the Rings</h5>
-              <p class="card-text">The Lord of the Rings tells of the great quest undertaken by Frodo and the Fellowship of the Ring: Gandalf the Wizard; the hobbits Merry, Pippin, and Sam; Gimli the Dwarf; Legolas the Elf; Boromir of Gondor; and a tall, mysterious stranger called Strider.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <img src="/images/in_cold_blood.jpg" class="card-img" alt="In Cold Blood">
-          </div>
-          <div class="col-md-4">
-            <div class="card-body">
-              <h5 class="card-title">In Cold Blood</h5>
-              <p class="card-text">In Cold Blood is a seminal work of modern prose, a remarkable synthesis of journalistic skill and powerfully evocative narrative.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
+        </div>
+        <div class="col-md-2">
+          <img src="/images/in_cold_blood.jpg" class="card-img" alt="In Cold Blood">
+        </div>
+        <div class="col-md-4">
+          <div class="card-body">
+            <h5 class="card-title">In Cold Blood</h5>
+            <p class="card-text">In Cold Blood is a seminal work of modern prose, a remarkable synthesis of journalistic
+              skill and powerfully evocative narrative.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
         </div>
       </div>
-      <div>
-        <div class="row no-gutters">
-          <div class="col-md-2">
-            <img src="/images/harry_potter.jpg" class="card-img" alt="Harry Potter and the Deathly Hallows">
+    </div>
+    <div>
+      <div class="row no-gutters">
+        <div class="col-md-2">
+          <img src="/images/harry_potter.jpg" class="card-img" alt="Harry Potter and the Deathly Hallows">
+        </div>
+        <div class="col-md-4">
+          <div class="card-body">
+            <h5 class="card-title">Harry Potter and the Deathly Hallows</h5>
+            <p class="card-text">Overall, Harry Potter and the Deathly Hallows is the most emotional and exciting book
+              of the entire series and is a must read for those who love the genre.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
-          <div class="col-md-4">
-            <div class="card-body">
-              <h5 class="card-title">Harry Potter and the Deathly Hallows</h5>
-              <p class="card-text">Overall, Harry Potter and the Deathly Hallows is the most emotional and exciting book of the entire series and is a must read for those who love the genre.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <img src="/images/game_of_thrones.jpg" class="card-img" alt="A Game of Thrones">
-          </div>
-          <div class="col-md-4">
-            <div class="card-body">
-              <h5 class="card-title">A Game of Thrones</h5>
-              <p class="card-text">Here is the first volume in George R. R. Martin’s magnificent cycle of novels that includes A Clash of Kings and A Storm of Swords. As a whole, this series comprises a genuine masterpiece of modern fantasy, bringing together the best the genre has to offer. </p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
+        </div>
+        <div class="col-md-2">
+          <img src="/images/game_of_thrones.jpg" class="card-img" alt="A Game of Thrones">
+        </div>
+        <div class="col-md-4">
+          <div class="card-body">
+            <h5 class="card-title">A Game of Thrones</h5>
+            <p class="card-text">Here is the first volume in George R. R. Martin’s magnificent cycle of novels that
+              includes A Clash of Kings and A Storm of Swords. As a whole, this series comprises a genuine masterpiece
+              of modern fantasy, bringing together the best the genre has to offer. </p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
         </div>
       </div>
+    </div>
   </div>
 </div>
-
-
-
 
 <!-- Check-Out Inventory -->
 <div class="jumbotron jumbotron-fluid bg-secondary mb-0">
   <div class="container text-dark">
-    <h1 class="display-3 font-weight-bold pb-5 text-white">Checked-Out Books</h1>
-      <div class="row">
-        <div class="col-sm-4">
-          <h4 class="text-white">Return Policy</h4>
-          <p class="text-white">We hope you are enjoying your book!  In order others to enjoy books like you, we need to make sure the books checked-out are returned in a timely manner.  Please make sure you return the book within 30 days of check-out or you will be fined $5.00 every week late until the overdue book is returned.  Thank you for your business!</p>
-        </div>
-        <div class="col-sm-7 border border-white mt-2 ml-5">
-          <h2 class="text-center text-white mt-2">These books are checked-out, enjoy!</h2>
-        </div>
+    <h1 class="display-3 font-weight-bold pb-5 text-dark">Checked-Out Books</h1>
+    <div class="row">
+      <div class="col-sm-4">
+        <h4 class="text-dark">Return Policy</h4>
+        <p class="text-dark">We hope you are enjoying your book! In order others to enjoy books like you, we need to
+          make sure the books checked-out are returned in a timely manner. Please make sure you return the book within
+          30 days of check-out or you will be fined $5.00 every week late until the overdue book is returned. Thank you
+          for your business!</p>
       </div>
+      <div class="col-sm-7 border border-dark mt-2 ml-5">
+        <h2 class="text-center text-dark mt-2">These books are checked-out, enjoy!</h2>
+        <ul id="checkout-list" class="list-group">
+          {{#each checkoutArray}}
+          <li  class="list-group-item">
+            {{this}}
+          </li></br>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -186,4 +204,3 @@
 
 
 <script src="js/index.js"></script>
-
