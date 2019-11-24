@@ -27,6 +27,7 @@ $(document).ready(function () {
     event.preventDefault();
     var searchInput = $("#book_search").val().trim();
 
+<<<<<<< HEAD
     getSearch(searchInput);
   }
 
@@ -265,3 +266,6 @@ $(document).ready(function () {
 
 
 });
+=======
+});
+>>>>>>> c25d0912acb005a04ae064356e8629ccf1a4a55a
