@@ -75,6 +75,12 @@ app.post("/api/login", passport.authenticate("local"), function (req, res) {
     });
   });
 
+  app.get("/api/books", function (req, res){
+    db.Book.findAll().then(function(bookData){
+      res.json(bookData)
+    })
+  })
+
   // update qty in book table
   app.put("/updateQty/:book_id", function (req, res) {
     db.Book.update({
