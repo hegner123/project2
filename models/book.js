@@ -36,14 +36,14 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
 
-    // Book.associate = function(models) {
-    //     Book.belongsToMany(models.User, {
-    //         through: "Checkout",
-    //         as: "Book",
-    //         foreignKey: "bookId",
-    //         otherKey: "userId"
-    //       });
-    //   };
+    Book.associate = function(models) {
+        Book.belongsToMany(models.User, {
+            through: "Checkout",
+            as: "Book",
+            foreignKey: "bookId",
+            otherKey: "userId"
+          });
+      };
 
     return Book;
 }

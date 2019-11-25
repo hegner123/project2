@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     // The password cannot be null
-    auth_string: {
+    password: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -67,16 +67,16 @@ module.exports = function(sequelize, DataTypes) {
      );
    });
 
-  //  User.associate = function(models) {
+   User.associate = function(models) {
     // Associating Author with Posts
     // When an Author is deleted, also delete any associated Posts
-    // User.belongsToMany(models.Book, {
-    //   through: "Checkout",
-    //   as: "User",
-    //   foreignKey: "userId",
-    //   otherKey: "bookId"
-    // });
-  // };
+    User.belongsToMany(models.Book, {
+      through: "Checkout",
+      as: "User",
+      foreignKey: "userId",
+      otherKey: "bookId"
+    });
+  };
   return User;
 };
 //This is a fix by Samaila Philemon Bala in case you want to use ES6
