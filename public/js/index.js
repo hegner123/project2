@@ -135,12 +135,13 @@ $(document).ready(function () {
       title1 = item.volumeInfo.title;
       author1 = item.volumeInfo.authors;
       publisher1 = item.volumeInfo.publisher;
+      description1 = item.volumeInfo.description;
       bookLink1 = item.volumeInfo.previewLink;
       bookIsbn1 = item.volumeInfo.industryIdentifiers[1].identifier
       bookImg1 = (item.volumeInfo.imageLinks) ? item.volumeInfo.imageLinks.thumbnail : placeHldr;
 
       outputList.innerHTML += `<div id="modal-show">` +
-      formatOutput(bookImg1, title1, author1, publisher1, bookLink1, bookIsbn1) + 
+      formatOutput(bookImg1, title1, author1, publisher1, description1, bookLink1, bookIsbn1) + 
       `</div>`
 
       function formatOutput(bookImg, title, author, publisher, description,  bookLink, bookIsbn) {

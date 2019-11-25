@@ -119,16 +119,15 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   var item
-  var outputList = document.getElementById("books-output");
+  var outputList = document.getElementById("gList-output");
   var bookUrl = "https://www.googleapis.com/books/v1/volumes?q="
   var placeHldr = '<img src="https://via.placeholder.com/150">'
   var searchData;
 
-  $("#searchBtn").click(function() {
-    event.preventDefault();
+  $("#search").click(function() {
       outputList.innerHTML = "";
       document.body.style.backgroundImage = "url('')";
-      searchData = $("#book_search").val();
+      searchData = $("#search-box").val();
 
       if(searchData === "" || searchData === null) {
           displayError();
@@ -153,7 +152,7 @@ $(document).ready(function() {
               }
           });
       }
-      $("#book_search").val("");
+      $("#search-box").val("");
   });
 
   function displayResults(response) {
@@ -162,87 +161,55 @@ $(document).ready(function() {
           title1 = item.volumeInfo.title;
           author1 = item.volumeInfo.authors;
           publisher1 = item.volumeInfo.publisher;
+          description1 = item.volumeInfo.description;
           bookLink1 = item.volumeInfo.previewLink;
           bookIsbn1 = item.volumeInfo.industryIdentifiers[1].identifier
           bookImg1 = (item.volumeInfo.imageLinks) ? item.volumeInfo.imageLinks.thumbnail : placeHldr;
 
           item2 = response.items[i+1];
           title2 = item2.volumeInfo.title;
-          author2 = item2.volumeInfo.authors;
+          author2 = item2.volumeInfo.authors;            
           publisher2 = item2.volumeInfo.publisher;
+          description2= item2.volumeInfo.description;
           bookLink2 = item2.volumeInfo.previewLink;
           bookIsbn2 = item2.volumeInfo.industryIdentifiers[1].identifier
           bookImg2 = (item2.volumeInfo.imageLinks) ? item2.volumeInfo.imageLinks.thumbnail : placeHldr;
 
           outputList.innerHTML += '<div class="row mt-4">' +
-                                  formatOutput(bookImg1, title1, author1, publisher1, bookLink1, bookIsbn1) +
-                                  formatOutput(bookImg2, title2, author2, publisher2, bookLink2, bookIsbn2)
+                                  formatOutput(bookImg1, title1,  author1, publisher1, description1, bookLink1, bookIsbn1) +
+                                  formatOutput(bookImg2, title2,  author2, publisher2, description2, bookLink2, bookIsbn2)
                                   '</div>';
 
           console.log(outputList);
 
       }
   }
-  function formatOutput(bookImg, title, author, publisher, bookLink, bookIsbn) {
+  function formatOutput(bookImg, title, author, publisher, description, bookLink, bookIsbn) {
       var viewUrl = 'book.html?isbn='+bookIsbn;
-      var htmlCard = ` <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-             <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalCenterTitle">${title}</h5>
-                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                         <span aria-hidden="true">&times;</span>
-                       </button>
-
-                     </div>
-                           <div class="modal-body">
-
+      var htmlCard = `<div class="col-lg-6">
+                          <div class="card" style="">
+                              <div class="row no-gutters">
+                                  <div class="col-md-4">
                                       <img src="${bookImg}" class="card-img" alt="...">
                                   </div>
                                   <div class="col-md-8">
-                                      <div class="card-body bg-secondary">
+                                      <div class="card-body bg-dark">
                                           <h5 class="text-white card-title">${title}</h5>
                                           <p class="text-white card-text">Author: ${author}</p>
                                           <p class="text-white card-text">Publisher: ${publisher}</p>
-                                          <a target="_blank" href="${viewUrl}" class="btn btn-dark">Read Book</a>
+                                          <p class="text-white card-text">Descrition: ${description}</p>
+                                          <a target="_blank" href="${viewUrl}" class="btn btn-secondary">Read Book</a>
                                       </div>
                                   </div>
-
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  </div>
-                                </div>
                               </div>
-                            </div>
-                            
-                              <div class="card-body bg-white">
-                                  <h3 class="text-black card-title text-center">${title}</h3>
-                                  <p class="text-black card-text">Author: ${author}</p>
-                                  <p class="text-black card-text">Publisher: ${publisher}</p>  
-                              </div>
-                            
-                              <div class="modal-footer">
-                                <a target="_blank" href="${viewUrl}" class="btn btn-success">Read Book</a>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                              </div>
-                            </div>
-                            
                           </div>
                       </div>`
-      return htmlCard;
-
-
-
-
-
-
-
-
-
+      return htmlCard;                                      
   }
 
-
+  function displayError() {
+      alert("You must enter a book title in the search query!");
+  }
 });
 
 
