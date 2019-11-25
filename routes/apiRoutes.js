@@ -69,9 +69,10 @@ app.post("/api/login", passport.authenticate("local"), function (req, res) {
       }
     }).then(function (dbBook) {
       res.json(dbBook);
-      //console.log(dbBook);
+      console.log(dbBook);
     }).catch(function (err) {
       res.json(err);
+      console.log(err);
     });
   });
 
