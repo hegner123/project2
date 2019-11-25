@@ -64,13 +64,13 @@ module.exports = function(sequelize, DataTypes) {
   // Creating a custom method for our User model.
   //This will check if an unhashed password entered by the
   //user can be compared to the hashed password stored in our database
-  User.prototype.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
+  User.prototype.validPassword = function(auth_string) {
+    return bcrypt.compareSync(auth_string, this.auth_string);
   };
 
   User.beforeCreate(user => {
-    user.password = bcrypt.hashSync(
-      user.password,
+    user.auth_string = bcrypt.hashSync(
+      user.auth_string,
        bcrypt.genSaltSync(10),
        null
      );
