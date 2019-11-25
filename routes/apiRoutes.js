@@ -76,7 +76,9 @@ app.post("/api/login", passport.authenticate("local"), function (req, res) {
   });
 
   app.get("/api/books", function (req, res){
-    db.Book.findAll().then(function(bookData){
+    db.Book.findAll({
+      attributes: []
+    }).then(function(bookData){
       res.json(bookData)
     })
   })
