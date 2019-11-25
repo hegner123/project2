@@ -8,15 +8,14 @@ var passport = require("../config/passport");
 
 module.exports = function (app) {
 
-  app.post("/api/login", passport.authenticate("local"), function (req, res) {
+app.post("/api/login", passport.authenticate("local"), function (req, res) {
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
     // They won't get this or even be able to access this page if they aren't authed
-    res.json("/profile");
-  });
+  res.json("/profile");
+});
 
   app.post("/api/signup", function (req, res) {
-    console.log(req.body);
     db.User.create({
       email: req.body.email,
       password: req.body.password,
@@ -30,9 +29,9 @@ module.exports = function (app) {
       console.log("redirect");
       res.json("/login");
     }).catch(function (err) {
+      console.log("routing error")
       console.log(err);
       res.json(err);
-
     });
   });
 
@@ -60,7 +59,6 @@ module.exports = function (app) {
 
   // apiRoute to handle search
   app.get("/search/:id", function (req, res) {
-
     db.Book.findAll({
       where: {
         [db.Sequelize.Op.or]: [
@@ -70,16 +68,23 @@ module.exports = function (app) {
       }
     }).then(function (dbBook) {
       res.json(dbBook);
-      //console.log(dbBook);
+      console.log('check' + dbBook);
     }).catch(function (err) {
-
       res.json(err);
+      console.log(err);
     });
   });
 
+  app.get("/api/books", function (req, res){
+    db.Book.findAll({
+      attributes: []
+    }).then(function(bookData){
+      res.json(bookData)
+    })
+  })
+
   // update qty in book table
   app.put("/updateQty/:book_id", function (req, res) {
-
     db.Book.update({
       qty_on_hand: req.body.new_qty_on_hand,
       qty_checked_out: req.body.new_qty_checkedout

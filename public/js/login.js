@@ -1,5 +1,4 @@
-
-  $(document).ready(function(){
+$(document).ready(function(){
   //LOGIN
   // Getting references to our form and inputs
   var loginBtn = $("#login-btn")

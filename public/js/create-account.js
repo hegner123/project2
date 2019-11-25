@@ -11,9 +11,6 @@ $(document).ready(function(){
     var inputZip = $("#input-zip");
     $("#failed-login").hide();
 
-    // Variable to hold search result data
-    var searchResult;
-
     // When the signup button is clicked, we validate the email and password are not blank
     signUpForm.on("submit", function(event) {
       event.preventDefault();
@@ -59,7 +56,7 @@ $(document).ready(function(){
         if (data ==="/login"){
           window.location.href = data;
         } else {
-          var errorData = data.errors[0].message;
+          var errorData = data.errors;
           $("#error-area").text(errorData);
           $("#error-area").css({"text-transform": "capitalize"}
           )}
@@ -71,4 +68,4 @@ $(document).ready(function(){
 
     }
 
-})
+});
