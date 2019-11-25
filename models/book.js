@@ -1,7 +1,7 @@
 // Create book model
 
 module.exports = function(sequelize, DataTypes) {
-    var Book = sequelize.define("book", {
+    var Book = sequelize.define("Book", {
         book_id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
