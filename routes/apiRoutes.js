@@ -59,7 +59,6 @@ app.post("/api/login", passport.authenticate("local"), function (req, res) {
 
   // apiRoute to handle search
   app.get("/search/:id", function (req, res) {
-
     db.Book.findAll({
       where: {
         [db.Sequelize.Op.or]: [
@@ -69,7 +68,7 @@ app.post("/api/login", passport.authenticate("local"), function (req, res) {
       }
     }).then(function (dbBook) {
       res.json(dbBook);
-      console.log(dbBook);
+      console.log('check' + dbBook);
     }).catch(function (err) {
       res.json(err);
       console.log(err);
