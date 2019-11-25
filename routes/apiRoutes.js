@@ -16,7 +16,6 @@ module.exports = function (app) {
   });
 
   app.post("/api/signup", function (req, res) {
-    console.log(req.body);
     db.User.create({
       email: req.body.email,
       password: req.body.password,
@@ -30,6 +29,7 @@ module.exports = function (app) {
       console.log("redirect");
       res.json("/login");
     }).catch(function (err) {
+      console.log("routing error")
       console.log(err);
       res.json(err);
 
