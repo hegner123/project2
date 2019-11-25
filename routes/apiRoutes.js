@@ -18,9 +18,9 @@ app.post("/api/login", passport.authenticate("local"), function (req, res) {
   app.post("/api/signup", function (req, res) {
     db.User.create({
       email: req.body.email,
-      password: req.body.password,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
+      password: req.body.password,
       address: req.body.address,
       city: req.body.city,
       state: req.body.state,
