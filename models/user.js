@@ -13,11 +13,6 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true
       }
     },
-    // The password cannot be null
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -31,6 +26,10 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
           notEmpty: true
       }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
     address: {
       type: DataTypes.STRING,
