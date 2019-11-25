@@ -31,6 +31,11 @@ app.get("/login", function(req, res) {
     res.render('profile');
   });
 
+app.get("/book/?isbn:", function (req,res){
+  console.log(req.params);
+  res.json(req.params)
+})
+
   app.get("*", function (req,res){
     res.render('404');
   })
