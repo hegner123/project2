@@ -2,7 +2,7 @@
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 //
-//We will need the models folder to check passport agains
+//We will need the models folder to check passport against
 var db = require("../models");
 //
 // Telling passport we want to use a Local Strategy. In other words,
@@ -16,7 +16,8 @@ passport.use(new LocalStrategy(
     // When a user tries to sign in this code runs
     db.User.findOne({
       where: {
-        email: email
+        email: email,
+        password: password
       }
     }).then(function(dbUser) {
       // If there's no user with the given email
