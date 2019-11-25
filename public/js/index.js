@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
 
   // variables for google books api
@@ -188,6 +189,7 @@ $(document).ready(function () {
 
 
   var checkOut = function () {
+
     console.log("btn works");
     btnId = $(this).attr("id");
     btnValue = $(this).attr("value");
