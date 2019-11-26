@@ -73,8 +73,49 @@
   </div>
 </div>
 
-<!-- Modal -->
+  <div class="container text-dark">
+    <h1 class=" font-weight-bold pb-5 text-dark">Checked-Out Books</h1>
+    <div class="row">
+      <div class="col-md-4">
+        <h4 class="text-dark">Return Policy</h4>
+        <p class="text-dark">We hope you are enjoying your book! In order others to enjoy books like you, we need to
+          make sure the books checked-out are returned in a timely manner. Please make sure you return the book within
+          30 days of check-out or you will be fined $5.00 every week late until the overdue book is returned. Thank you
+          for your business!</p>
+      </div>
+      <div class="col-md-7  col-12  mt-2">
 
+        <ul id="checkout-list" class="list-group">
+          {{#each checkoutArray}}
+          <li  class="list-group-item">
+            {{this}}
+          </li></br>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+      <!--  Modal for checkout info -->
+    <div class="modal fade" id="checkout-info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="checkout-info-Title">Error!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="checkout-info-Body">
+​
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <!-- Book Reviews -->
 <div class="jumbotron jumbotron-fluid bg-light text-dark mb-0">
@@ -166,30 +207,7 @@
 </div>
 
 <!-- Check-Out Inventory -->
-<div class="jumbotron jumbotron-fluid bg-secondary mb-0">
-  <div class="container text-dark">
-    <h1 class="display-3 font-weight-bold pb-5 text-dark">Checked-Out Books</h1>
-    <div class="row">
-      <div class="col-sm-4">
-        <h4 class="text-dark">Return Policy</h4>
-        <p class="text-dark">We hope you are enjoying your book! In order others to enjoy books like you, we need to
-          make sure the books checked-out are returned in a timely manner. Please make sure you return the book within
-          30 days of check-out or you will be fined $5.00 every week late until the overdue book is returned. Thank you
-          for your business!</p>
-      </div>
-      <div class="col-sm-7 border border-dark mt-2 ml-5">
-        <h2 class="text-center text-dark mt-2">These books are checked-out, enjoy!</h2>
-        <ul id="checkout-list" class="list-group">
-          {{#each checkoutArray}}
-          <li  class="list-group-item">
-            {{this}}
-          </li></br>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 <!-- Footer -->
 <div class="bg-dark">

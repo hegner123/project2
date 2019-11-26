@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
 
   // variables for google books api
@@ -33,6 +32,7 @@ $(document).ready(function () {
 
   // function to get database result
   function getSearch(param1) {
+    $("#book_search").val("");
     var id = param1;
     console.log("id: " + param1);
     $.ajax({
@@ -90,12 +90,8 @@ $(document).ready(function () {
     });
   }
 
-  //All BUTTON CLICKS
 
-  // search button click
   $("#searchBtn").on("click", search);
-
-
 
   var bookDetailsApi = function () {
     event.preventDefault();
@@ -173,7 +169,7 @@ $(document).ready(function () {
                                   <p class="text-black">Description: ${description}</p>
                                 <div class="row">
                                   <div class="col-md-12 text-right">
-                                    <a target="_blank" href="${viewUrl}" class="btn btn-success">Read Book</a>
+                                    <a target="_blank" href="${bookLink}" class="btn btn-success">Read Book</a>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                   </div>
                                 </div>
@@ -184,9 +180,7 @@ $(document).ready(function () {
 
       }
 
-};
-
-
+  };
 
   var checkOut = function () {
 
@@ -223,6 +217,9 @@ $(document).ready(function () {
       else {
         //modal
         console.log("not enough");
+        $("#checkout-info-Title").text("Not enough!");
+            $("#checkout-info-Body").text("All copies of the book has been checked out. Please try again later.");
+            $("#checkout-info").modal();
       }
     };
 
@@ -239,22 +236,24 @@ $(document).ready(function () {
     }).then(console.log("qty update successful"));
   }
 
-
-
-
-
   function insertCheckout(info) {
     $.post("/api/checkout", info, refreshCheckoutSection);
   };
 
   function refreshCheckoutSection() {
+    $("#checkout-info-Title").text("Successful Checkout!");
+    $("#checkout-info-Body").text("You have checked out " + btnValue + ".");
+    $("#checkout-info-Body").append('<br>');
+    $("#checkout-info-Body").append("Please return the book by " + formatDate + ".")
+    $("#checkout-info").modal();
+    $.get
     $("#checkout-list").empty();
     $checkoutArray.push(btnValue + " due by " + formatDate);
     console.log("arrray: " + $checkoutArray);
 
     $("#checkout-list").append($checkoutArray);
-
   };
+
   // checkout button click
   $("#result-list").on("click", ".chkoutBtn", checkOut);
 });
