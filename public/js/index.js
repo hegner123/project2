@@ -21,6 +21,23 @@ $(document).ready(function () {
   var searchResult;
   var $checkoutArray = [];
 
+  $.get("/api/user").then(function(data) {
+    console.log(data)
+      var bookData = data.checkoutData
+      var checkoutArea = $("#checkout-list");
+      var item = $('<div class="col-12">');
+      var bookImg = $('<img src="">');
+      var bookTitle = $("<h6>");
+      var returnText = $('<p class="text-bold">');
+      item.appendTo(checkoutArea);
+      bookTitle.text(bookData.title);
+      bookTitle.appendTo(item);
+      bookImg.attr("src", bookData.small_image_url);
+      bookImg.appendTo(bookTitle);
+      returnText.text("Return By: " + data.dueDate.replace("T00:00:00.000Z", ""));
+      returnText.appendTo(bookTitle);
+    });;
+
 
   // Search button on click call search function
   var search = function (event) {
@@ -247,10 +264,23 @@ $(document).ready(function () {
     $("#checkout-info").modal();
     $.get
     $("#checkout-list").empty();
-    $checkoutArray.push(btnValue + " due by " + formatDate);
-    console.log("arrray: " + $checkoutArray);
-
-    $("#checkout-list").append($checkoutArray);
+    $.get("/api/user").then(function(data) {
+      console.log(data)
+        var bookData = data.checkoutData
+        var checkoutArea = $("#checkout-list");
+        var item = $('<div class="col-12">');
+        var bookImg = $('<img src="">');
+        var bookTitle = $("<h6>");
+        var returnText = $('<p class="text-bold">');
+        item.appendTo(checkoutArea);
+        bookTitle.text(bookData.title);
+        bookTitle.appendTo(item);
+        bookImg.attr("src", bookData.small_image_url);
+        bookImg.appendTo(bookTitle);
+        returnText.text("Return By: " + data.dueDate.replace("T00:00:00.000Z", ""));
+        returnText.appendTo(bookTitle);
+      });;
+ ;
   };
 
   // checkout button click

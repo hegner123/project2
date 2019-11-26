@@ -36,23 +36,6 @@ app.post("/api/login", passport.authenticate("local"), function (req, res) {
     });
   });
 
-
-  app.get("/api/user", function (req, res) {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    }
-    else {
-      var user = req.user
-      res.json({
-        email: user.email,
-        name: user.firstName + " " + user.lastName,
-        address: user.address + " " + user.city + " " + user.state + " " + user.zip
-      });
-    }
-  });
-
-
   app.get("/logout", function (req, res) {
     req.logout();
     res.redirect("/");
@@ -78,11 +61,9 @@ app.post("/api/login", passport.authenticate("local"), function (req, res) {
 
   // update qty in book table
   app.put("/updateQty/:book_id", isAuthenticated, function (req, res) {
-    
     db.Book.update({
       qty_on_hand: req.body.new_qty_on_hand,
       qty_checked_out: req.body.new_qty_checkedout
-     
     }, {
       where: {
         book_id: req.body.book_id
@@ -112,6 +93,37 @@ app.post("/api/login", passport.authenticate("local"), function (req, res) {
       console.log(err)
     });
   });
+
+  app.get("/api/user", function (req, res) {
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    }
+    else {
+      var user = req.user
+      db.Checkout.findAll({where: {
+        userId: req.user.id
+      }}
+        ).then(function(data){
+          var dueDate = data[0].return_by_date
+          db.Book.findOne({where :{book_id: data[0].dataValues.bookId}}).then(function(data2){
+            res.json({
+              email: user.email,
+              name: user.firstName + " " + user.lastName,
+              address: user.address + " " + user.city + " " + user.state + " " + user.zip,
+              dueDate: dueDate,
+              checkoutData: data2,
+            });
+          });
+
+        });
+
+    }
+  });
+
+
+
+
 
   app.delete("/api/user/delete/:email", function (req, res) {
     // We just have to specify which todo we want to destroy with "where"
