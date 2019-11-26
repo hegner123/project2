@@ -198,13 +198,13 @@ $(document).ready(function() {
                                           <p class="text-white card-text">Author: ${author}</p>
                                           <p class="text-white card-text">Publisher: ${publisher}</p>
                                           <p class="text-white card-text">Descrition: ${description}</p>
-                                          <a target="_blank" href="${viewUrl}" class="btn btn-secondary">Read Book</a>
+                                          <a target="_blank" href="${bookLink}" class="btn btn-secondary">Read Book</a>
                                       </div>
                                   </div>
                               </div>
                           </div>
                       </div>`
-      return htmlCard;                                      
+      return htmlCard;
   }
 
   function displayError() {
