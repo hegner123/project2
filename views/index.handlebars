@@ -58,16 +58,11 @@
         <h2 class="text-center text-white mt-2">Would you like to check-out?</h2>
         <ul id="result-list" class="list-group text-white border no-border mb-2">
           {{#each bookList}}
-          <li data-id="{{this.book_id}}" class="list-group-item">
-            <a href="example/{{this.book_id}}">{{this.title}}</a>
-            <button class="btn  float-right chkoutBtn mr-2" id= "{{this.book_id}}" value ="{{this.title}}">Checkout</button>
-            <button class="btn  float-right detailsBtn" id="{{this.title}}">More Details</button>
-          </li>
+  
           {{/each}}
         </ul>
       </div>
       <div id="books-output">
-  
       </div>
     </div>
   </div>

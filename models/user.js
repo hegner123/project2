@@ -49,6 +49,16 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
+  User.associate = function(models) {
+    // Associating Author with Posts
+    // When an Author is deleted, also delete any associated Posts
+    User.belongsToMany(models.Book, {
+      through: "Checkout",
+      as: "User",
+      foreignKey: "userId",
+      otherKey: "bookId"
+    });
+  };
 
 
   // Creating a custom method for our User model.
@@ -66,16 +76,7 @@ module.exports = function(sequelize, DataTypes) {
      );
    });
 
-   User.associate = function(models) {
-    // Associating Author with Posts
-    // When an Author is deleted, also delete any associated Posts
-    User.belongsToMany(models.Book, {
-      through: "Checkout",
-      as: "User",
-      foreignKey: "userId",
-      otherKey: "bookId"
-    });
-  };
+
   return User;
 };
 //This is a fix by Samaila Philemon Bala in case you want to use ES6
