@@ -1,9 +1,17 @@
 $(document).ready(function(){
+
+
+
   $.get("/api/user").then(function(data) {
     console.log(data)
     $("#profile-email").text(data.email)
       $("#profile-name").text(data.name);
       $("#profile-address").text(data.address);
+
+      userId = data.id;
+      console.log("user id from table: " + userId);
+     
+      
     });
 
   $("#logout").on("click", function (){

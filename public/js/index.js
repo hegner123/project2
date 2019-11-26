@@ -1,4 +1,8 @@
+var userId;
 $(document).ready(function () {
+
+ 
+
 
   // variables for google books api
   var item;
@@ -130,12 +134,13 @@ $(document).ready(function () {
       title1 = item.volumeInfo.title;
       author1 = item.volumeInfo.authors;
       publisher1 = item.volumeInfo.publisher;
+      description1 = item.volumeInfo.description;
       bookLink1 = item.volumeInfo.previewLink;
       bookIsbn1 = item.volumeInfo.industryIdentifiers[1].identifier
       bookImg1 = (item.volumeInfo.imageLinks) ? item.volumeInfo.imageLinks.thumbnail : placeHldr;
 
       outputList.innerHTML += `<div id="modal-show">` +
-      formatOutput(bookImg1, title1, author1, publisher1, bookLink1, bookIsbn1) + 
+      formatOutput(bookImg1, title1, author1, publisher1, description1, bookLink1, bookIsbn1) + 
       `</div>`
 
       function formatOutput(bookImg, title, author, publisher, description,  bookLink, bookIsbn) {
@@ -163,10 +168,10 @@ $(document).ready(function () {
                                   </div>
                                 </div>
                                   <p class="text-black card-text">Publisher: ${publisher}</p>
-                                  <p class="text-black">Description: ${description}</p>
+                                  <p class="text-black">Description: ${description}"</p>
                                 <div class="row">
                                   <div class="col-md-12 text-right">
-                                    <a target="_blank" href="${viewUrl}" class="btn btn-success">Read Book</a>
+                                    <a target="_blank" href="${bookLink}" class="btn btn-success">Read Book</a>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                   </div>
                                 </div>
@@ -178,7 +183,10 @@ $(document).ready(function () {
 };
 
   var checkOut = function () {
-    console.log("btn works");
+
+    console.log("checkout btn works");
+    
+    console.log("imported user id: " + userId);
     btnId = $(this).attr("id");
     btnValue = $(this).attr("value");
 
@@ -209,8 +217,11 @@ $(document).ready(function () {
         insertCheckout(info);
       }
       else {
-        //modal
         console.log("not enough");
+        //modal for not enough copies of the book
+        $("#checkout-info-Title").text("Not enough!");
+        $("#checkout-info-Body").text("All copies of the book has been checked out. Please try again later.");
+        $("#checkout-info").modal();
       }
     };
   };
@@ -230,6 +241,12 @@ $(document).ready(function () {
   };
 
   function refreshCheckoutSection() {
+    $("#checkout-info-Title").text("Successful Checkout!");
+    $("#checkout-info-Body").text("You have checked out " + btnValue + ".");
+    $("#checkout-info-Body").append('<br>');
+    $("#checkout-info-Body").append("Please return the book by " + formatDate + ".")
+    $("#checkout-info").modal();
+
     $("#checkout-list").empty();
     var checkoutItem = $('<li class="list-group-item>');
     checkoutItem.text(btnValue + " due by " + formatDate);

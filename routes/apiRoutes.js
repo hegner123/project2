@@ -45,6 +45,7 @@ module.exports = function (app) {
     else {
       var user = req.user
       res.json({
+        id: user.id,
         email: user.email,
         name: user.firstName + " " + user.lastName,
         address: user.address + " " + user.city + " " + user.state + " " + user.zip
@@ -97,7 +98,7 @@ module.exports = function (app) {
 
   app.post("/api/checkout", function (req, res) {
     db.Checkout.create({
-      userId: req.body.userId,
+      userId: user.id,
       bookId: req.body.bookId,
       checkout_on: req.body.checkout_on,
       return_by_date: req.body.return_by_date,
