@@ -43,18 +43,15 @@ form.login {
 .books-img{
   width:50px;
 }
-.cFooter{
-  margin-top: 50px;
-}
 
-.dFooter{
-  margin-top: 100px;
-}
-
-.cAccount{
-  padding-right: 15px;
-}
 
 .books-img{
   width:5rem;
 }
+
+.footer-bottom{
+  position: relative;
+  bottom:-100px;
+}
+
+

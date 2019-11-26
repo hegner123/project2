@@ -95,6 +95,7 @@ app.post("/api/login", passport.authenticate("local"), function (req, res) {
   });
 
   app.get("/api/user", function (req, res) {
+    console.log(req.user)
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -105,20 +106,27 @@ app.post("/api/login", passport.authenticate("local"), function (req, res) {
         userId: req.user.id
       }}
         ).then(function(data){
-          var dueDate = data[0].return_by_date
-          db.Book.findOne({where :{book_id: data[0].dataValues.bookId}}).then(function(data2){
+          if (!data[0]){
+            console.log("nothing");
             res.json({
               email: user.email,
               name: user.firstName + " " + user.lastName,
-              address: user.address + " " + user.city + " " + user.state + " " + user.zip,
-              dueDate: dueDate,
-              checkoutData: data2,
+              address: user.address + " " + user.city + " " + user.state + " " + user.zip
             });
+          }else {
+            var dueDate = data.return_by_date
+            db.Book.findOne({where :{book_id: data[0].dataValues.bookId}}).then(function(data2){
+              res.json({
+                email: user.email,
+                name: user.firstName + " " + user.lastName,
+                address: user.address + " " + user.city + " " + user.state + " " + user.zip,
+                dueDate: dueDate,
+                checkoutData: data2,
+              });
           });
-
+          };
         });
-
-    }
+    };
   });
 
 
