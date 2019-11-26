@@ -204,7 +204,6 @@ $(document).ready(function () {
         formatDate = dueDate.format("YYYY-MM-DD");
 
         info = {
-          userId: 1,
           bookId: btnId,
           checkout_on: currentDate,
           return_by_date: formatDate

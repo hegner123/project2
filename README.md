@@ -1,9 +1,7 @@
-# project2
-
-UR FSF Bootcamp PT - 2nd Project
+# UR FSF Bootcamp PT - 2nd Project
 
 
-The requirements for Project #2 are as follows:
+## The requirements for Project #2 are as follows:
 - Must use a Node and Express Web Server
 - Must be backed by a MySQL Database with a Sequelize ORM
 - Must have both GET and POST routes for retrieving and adding new data

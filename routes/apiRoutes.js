@@ -1,6 +1,7 @@
 //we import passport packages required for authentication
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 //
 //We will need the models folder to check passport agains
 var db = require("../models");
@@ -58,7 +59,7 @@ app.post("/api/login", passport.authenticate("local"), function (req, res) {
   });
 
   // apiRoute to handle search
-  app.get("/search/:id", function (req, res) {
+  app.get("/search/:id", isAuthenticated, function (req, res) {
     db.Book.findAll({
       where: {
         [db.Sequelize.Op.or]: [
@@ -76,10 +77,12 @@ app.post("/api/login", passport.authenticate("local"), function (req, res) {
   });
 
   // update qty in book table
-  app.put("/updateQty/:book_id", function (req, res) {
+  app.put("/updateQty/:book_id", isAuthenticated, function (req, res) {
+    
     db.Book.update({
       qty_on_hand: req.body.new_qty_on_hand,
       qty_checked_out: req.body.new_qty_checkedout
+     
     }, {
       where: {
         book_id: req.body.book_id
@@ -92,18 +95,21 @@ app.post("/api/login", passport.authenticate("local"), function (req, res) {
     });
   });
 
-  app.post("/api/checkout", function (req, res) {
+  app.post("/api/checkout", isAuthenticated, function (req, res) {
     db.Checkout.create({
-      userId: req.body.userId,
+      checkoutId: null,
+      userId: req.user.id,
       bookId: req.body.bookId,
       checkout_on: req.body.checkout_on,
       return_by_date: req.body.return_by_date,
       return_on: null
     }).then(function (dbCheckout) {
-      // We have access to the new todo as an argument inside of the callback function
+      // We have access to the new checkout as an argument inside of the callback function
+      console.log(dbCheckout);
       res.json(dbCheckout);
     }).catch(function (err) {
       res.json(err);
+      console.log(err)
     });
   });
 
@@ -117,6 +123,4 @@ app.post("/api/login", passport.authenticate("local"), function (req, res) {
       res.json("/");
     });
   });
-
-  
 }
